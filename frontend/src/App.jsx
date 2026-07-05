@@ -229,14 +229,6 @@ export default function App() {
             />
           </label>
           <label>
-            ZIP code
-            <input
-              placeholder="90210"
-              value={form.zip}
-              onChange={(e) => update("zip", e.target.value)}
-            />
-          </label>
-          <label>
             State
             <select value={form.state} onChange={(e) => update("state", e.target.value)}>
               {US_STATES.map((s) => (
