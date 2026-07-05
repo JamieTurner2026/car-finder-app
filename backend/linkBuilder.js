@@ -17,21 +17,23 @@ function buildLinks(params) {
   const makeSlug = make.toLowerCase().trim().replace(/\s+/g, "-");
   const modelSlug = model.toLowerCase().trim().replace(/\s+/g, "-");
 
-  const facebook = new URL("https://www.facebook.com/marketplace/search");
+  // Facebook Marketplace — city-level search works better than /search
+  // zip→city lookup not available without an API; use /marketplace/{zip} for local results
+  let facebook;
+  if (zip) {
+    facebook = new URL(`https://www.facebook.com/marketplace/${zip}/search`);
+  } else {
+    facebook = new URL("https://www.facebook.com/marketplace/search");
+  }
   if (query) facebook.searchParams.set("query", query);
   if (priceMin) facebook.searchParams.set("minPrice", priceMin);
   if (priceMax) facebook.searchParams.set("maxPrice", priceMax);
+  if (radius) facebook.searchParams.set("radius", radius);
   facebook.searchParams.set("exact", "false");
 
-  const enterprise = new URL("https://www.enterprisecarsales.com/search");
-  if (make) enterprise.searchParams.set("make", make);
-  if (model) enterprise.searchParams.set("model", model);
-  if (zip) enterprise.searchParams.set("zip", zip);
-  if (radius) enterprise.searchParams.set("radius", radius);
-  if (yearMin) enterprise.searchParams.set("year_min", yearMin);
-  if (yearMax) enterprise.searchParams.set("year_max", yearMax);
-  if (priceMin) enterprise.searchParams.set("price_min", priceMin);
-  if (priceMax) enterprise.searchParams.set("price_max", priceMax);
+  // Enterprise Car Sales — their SPA ignores URL params; link to homepage search
+  // so users aren't misled into thinking results are pre-filtered
+  const enterprise = new URL("https://www.enterprisecarsales.com/");
 
   let cargurus;
   if (cargurusModelId) {

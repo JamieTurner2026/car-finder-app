@@ -278,6 +278,11 @@ export default function App() {
               </a>
             ))}
           </div>
+          <p className="note">
+            💡 <strong>Facebook:</strong> sign in first for best results. &nbsp;
+            <strong>Enterprise:</strong> their site doesn't support pre-filled search links — search manually once it opens. &nbsp;
+            <strong>CarGurus & AutoTrader:</strong> open with your filters applied.
+          </p>
           {result.notes?.aggregationStatus && (
             <p className="note">{result.notes.aggregationStatus}</p>
           )}
