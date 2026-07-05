@@ -7,13 +7,16 @@ function buildLinks(params) {
     priceMin = "",
     priceMax = "",
     zip = "",
+    state = "",
     radius = "50",
+    mileageMin = "",
+    mileageMax = "",
     bodyType = "",
     cargurusMakeId = "",
     cargurusModelId = "",
   } = params;
 
-  const query = [make, model, bodyType].filter(Boolean).join(" ").trim();
+  const query = [make, model, bodyType, state].filter(Boolean).join(" ").trim();
   const makeSlug = make.toLowerCase().trim().replace(/\s+/g, "-");
   const modelSlug = model.toLowerCase().trim().replace(/\s+/g, "-");
 
@@ -52,10 +55,13 @@ function buildLinks(params) {
   if (yearMax) cargurus.searchParams.set("endYear", yearMax);
   if (priceMin) cargurus.searchParams.set("priceMin", priceMin);
   if (priceMax) cargurus.searchParams.set("priceMax", priceMax);
+  if (mileageMin) cargurus.searchParams.set("minMileage", mileageMin);
+  if (mileageMax) cargurus.searchParams.set("maxMileage", mileageMax);
 
   let autotraderPath = "/cars-for-sale/all-cars";
   if (makeSlug) autotraderPath += `/${makeSlug}`;
   if (makeSlug && modelSlug) autotraderPath += `/${modelSlug}`;
+  if (state) autotraderPath += `/state-${state.toLowerCase()}`;
   if (zip) autotraderPath += `/zip-${zip}`;
   const autotrader = new URL(`https://www.autotrader.com${autotraderPath}`);
   if (radius) autotrader.searchParams.set("searchRadius", radius);
@@ -63,6 +69,7 @@ function buildLinks(params) {
   if (yearMax) autotrader.searchParams.set("endYear", yearMax);
   if (priceMin) autotrader.searchParams.set("minPrice", priceMin);
   if (priceMax) autotrader.searchParams.set("maxPrice", priceMax);
+  if (mileageMax) autotrader.searchParams.set("maxMileage", mileageMax);
 
   return {
     facebook: facebook.toString(),
