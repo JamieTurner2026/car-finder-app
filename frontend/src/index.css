@@ -244,6 +244,36 @@ button[type="submit"]:disabled {
   font-size: 0.82rem;
 }
 
+.fb-tip {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: rgba(255, 180, 0, 0.08);
+  border: 1px solid rgba(255, 180, 0, 0.3);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.fb-tip-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.fb-login-link {
+  color: #f0b429;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.fb-login-link:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;

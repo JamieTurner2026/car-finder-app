@@ -264,6 +264,17 @@ export default function App() {
             </div>
           )}
 
+          <div className="fb-tip">
+            <span className="fb-tip-icon">⚠️</span>
+            <span>
+              <strong>Before clicking Facebook Marketplace:</strong> make sure you're already logged into Facebook in another tab.
+              If you click it while logged out, Facebook will drop your search after login.{" "}
+              <a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer" className="fb-login-link">
+                Log into Facebook first →
+              </a>
+            </span>
+          </div>
+
           <h2>Jump straight to a marketplace</h2>
           <div className="marketplace-row">
             {MARKETPLACES.map((m) => (
@@ -279,9 +290,8 @@ export default function App() {
             ))}
           </div>
           <p className="note">
-            💡 <strong>Facebook:</strong> sign in first for best results. &nbsp;
-            <strong>Enterprise:</strong> their site doesn't support pre-filled search links — search manually once it opens. &nbsp;
-            <strong>CarGurus & AutoTrader:</strong> open with your filters applied.
+            <strong>CarGurus & AutoTrader:</strong> open with your filters pre-applied. &nbsp;
+            <strong>Enterprise:</strong> search manually once it opens — their site doesn't support pre-filled links.
           </p>
           {result.notes?.aggregationStatus && (
             <p className="note">{result.notes.aggregationStatus}</p>
