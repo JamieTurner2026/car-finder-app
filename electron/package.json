@@ -1,0 +1,16 @@
+{
+  "name": "car-finder-electron",
+  "version": "1.0.0",
+  "description": "Find used cars across Facebook Marketplace, CarGurus, AutoTrader, and Enterprise Car Sales.",
+  "author": "JamieTurner2026",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.1",
+    "electron": "^32.1.2"
+  }
+}
