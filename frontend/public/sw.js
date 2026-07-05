@@ -1,4 +1,4 @@
-const CACHE_NAME = "car-finder-v1";
+const CACHE_NAME = "car-finder-v2";
 const SHELL_ASSETS = ["/", "/index.html", "/manifest.json", "/icon.svg"];
 
 self.addEventListener("install", (event) => {
