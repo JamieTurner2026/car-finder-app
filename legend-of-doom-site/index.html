@@ -187,6 +187,23 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
 
 /* coaches */
 .coachgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.dircard { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; background: #052a19; color: #fff; padding: 22px 24px; margin-bottom: 20px; border-left: 6px solid #f2b705; }
+.dircard .badge { font: 700 12px var(--label); letter-spacing: .14em; text-transform: uppercase; color: #f2b705; }
+.dircard h3 { font: 400 clamp(26px, 4vw, 38px) var(--display); letter-spacing: .02em; text-transform: uppercase; margin: 2px 0 6px; }
+.dircard p { color: #d6e4da; font-size: 14px; max-width: 520px; }
+.dircard .contact { display: grid; gap: 8px; font: 700 17px var(--label); overflow-wrap: anywhere; }
+.dircard .copy { background: transparent; color: #fff; border-color: #3d6b52; }
+.kits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 28px; }
+.kit { background: linear-gradient(180deg, var(--tile), var(--card)); border: 1px solid var(--line); padding: 14px; min-width: 0; }
+.kit svg { width: 100%; height: auto; display: block; }
+.kit h4 { margin: 10px 0 0; color: var(--fg); }
+.kit p { color: var(--muted); font-size: 13px; }
+.swatches { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+.sw { display: grid; gap: 6px; justify-items: center; font: 700 12px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.sw i { width: 84px; height: 46px; border: 2px solid #f2b705; display: block; }
+.price td:last-child, .price th:last-child { text-align: right; }
+.price td:last-child { font-weight: 700; }
+.price td:nth-child(2), .price th:nth-child(2) { text-align: left; }
 
 /* cart drawer */
 .scrim { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 30; }
@@ -208,7 +225,7 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
 .sumbox { white-space: pre-wrap; font: 13px/1.5 ui-monospace, Menlo, Consolas, monospace; background: var(--card); border: 1px solid var(--line); padding: 12px; max-height: 280px; overflow: auto; overflow-wrap: anywhere; }
 .btn.line-b { color: var(--fg); }
 
-@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .intro, .split, .cols { grid-template-columns: 1fr; } .coachgrid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .intro, .split, .cols { grid-template-columns: 1fr; } .coachgrid { grid-template-columns: 1fr; } .dircard { grid-template-columns: 1fr; } .kits { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .day { min-height: 54px; padding: 3px; font-size: 12px; } .dot { font-size: 8px; padding: 1px 3px; } .navlogo { height: 38px; } }
 @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } .bar nav { gap: 12px; font-size: 12px; } .kv > div { grid-template-columns: 1fr; } .kv .val { text-align: left; } }
 </style>
@@ -217,7 +234,7 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
   <div class="wrap">
     <a class="logo" href="#top" aria-label="The Legend of Doom home"><img class="navlogo" src="logo.jpg" alt="The Legend of Doom"></a>
     <nav aria-label="Main">
-      <a href="#teams">Teams</a><a href="#calendar">Calendar</a><a href="#coaches">Coaches</a><a href="#portal" data-rt>Player Stats</a><a href="#chat" data-rt>Team Chat</a><a href="#contact">Contact</a><a href="#coach" id="coachNav" hidden>Coach Console</a>
+      <a href="#teams">Teams</a><a href="#calendar">Calendar</a><a href="#coaches">Coaches</a><a href="#equipment">Equipment</a><a href="#portal" data-rt>Player Stats</a><a href="#chat" data-rt>Team Chat</a><a href="#contact">Contact</a><a href="#coach" id="coachNav" hidden>Coach Console</a>
       <button class="cartbtn" id="cartBtn" type="button" aria-haspopup="dialog">Sign-up cart<span id="cartCount">0</span></button>
     </nav>
   </div>
@@ -281,7 +298,8 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
 
   <!-- COACHES -->
   <section class="wrap sec" id="coaches">
-    <div class="intro"><span class="k">Coaches</span><p>Each team has its own coach. Reach out about practice, game day changes and playing time.</p></div>
+    <div class="intro"><span class="k">Coaches</span><p>Each team has its own head coach, and one Head Director oversees the whole program. Reach out about practice, game day changes and playing time.</p></div>
+    <div id="directorCard"></div>
     <div class="pillrow">
       <span class="lab">Sport</span>
       <div class="pills" id="pCoach" role="group" aria-label="Filter coaches by sport">
@@ -289,7 +307,23 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
       </div>
     </div>
     <div class="coachgrid" id="coachGrid"></div>
-    <p class="note-line"><span class="ph">Placeholder</span> Coach names, emails and phone numbers are examples. Send the real ones and they replace these.</p>
+    <p class="note-line"><span class="ph">Sample</span> These names, emails and phone numbers are made-up sample data. Send the real ones and they replace these.</p>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section class="wrap sec" id="equipment">
+    <div class="intro"><span class="k">Equipment &amp; uniforms</span><p>See our game-day uniforms in team colors and the gear each sport needs, with prices. Pick a sport.</p></div>
+    <div class="pillrow">
+      <span class="lab">Sport</span>
+      <div class="pills" id="pEquip" role="group" aria-label="Choose a sport">
+        <button type="button" data-v="basketball" aria-pressed="true">Basketball</button><button type="button" data-v="baseball" aria-pressed="false">Baseball</button><button type="button" data-v="football" aria-pressed="false">Football</button><button type="button" data-v="soccer" aria-pressed="false">Soccer</button>
+      </div>
+    </div>
+    <h4>Team uniforms</h4>
+    <div class="swatches" id="swatches"></div>
+    <div class="kits" id="kits"></div>
+    <h4>Equipment prices</h4>
+    <div class="panel"><div class="scroll"><table class="price" id="priceTbl"></table></div><p class="note-line" id="priceNote"></p></div>
   </section>
 
   <section class="wrap sec" id="soon" hidden>
@@ -346,15 +380,16 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
     <div class="intro"><span class="k">Contact</span><p>Reach the coaches, the program director and our team doctors. In an emergency call 911 first.</p></div>
     <div class="split">
       <div class="panel">
-        <h3>Coaches &amp; staff</h3>
-        <p class="sub">Replace these placeholders with real details.</p>
+        <h3>Program office</h3>
+        <p class="sub">Head Director and registration.</p>
         <div class="kv">
-          <div><div><span class="who">Program director</span><br><span class="role">Registration, fees, schedules</span></div><span class="val"><span data-copy="director@legendofdoom.example">director@legendofdoom.example</span><button class="copy" type="button">Copy</button></span></div>
-          <div><div><span class="who">Head coach</span><br><span class="role">Team questions</span></div><span class="val"><span data-copy="coach@legendofdoom.example">coach@legendofdoom.example</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Darius Monroe</span><br><span class="role">Head Director, all sports</span></div><span class="val" style="font-size:15px"><span data-copy="director@legendofdoom.example">director@legendofdoom.example</span><button class="copy" type="button">Copy</button></span></div>
           <div><div><span class="who">Director phone</span><br><span class="role">Call or text</span></div><span class="val"><span data-copy="(555) 010-0142">(555) 010-0142</span><button class="copy" type="button">Copy</button></span></div>
-          <div><div><span class="who">Head coach phone</span><br><span class="role">Game day changes</span></div><span class="val"><span data-copy="(555) 010-0187">(555) 010-0187</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Registration and fees</span><br><span class="role">Sign-ups, payments, forms</span></div><span class="val" style="font-size:15px"><span data-copy="registration@legendofdoom.example">registration@legendofdoom.example</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Registration phone</span><br><span class="role">Weekdays</span></div><span class="val"><span data-copy="(555) 010-0150">(555) 010-0150</span><button class="copy" type="button">Copy</button></span></div>
         </div>
-        <p class="note-line"><span class="ph">Placeholder</span> Example addresses and numbers only.</p>
+        <p class="note-line">Each team's own coach is in the <a href="#coaches" style="text-decoration:underline">Coaches</a> section.</p>
+        <p class="note-line"><span class="ph">Sample</span> Made-up sample details.</p>
       </div>
       <div class="panel">
         <h3>Team doctors</h3>
@@ -458,14 +493,22 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
     football:   { name: 'Soccer Complex',    where: 'Statesville, NC', type: 'Outdoor' },
     soccer:     { name: 'Soccer Complex',    where: 'Statesville, NC', type: 'Outdoor' }
   };
+  var DIRECTOR = { name: 'Darius Monroe', email: 'director@legendofdoom.example', phone: '(555) 010-0142' };
+  var COACH_TABLE = {
+    basketball: [['Marcus Reed','(555) 010-0111'], ['Tanya Brooks','(555) 010-0112'], ['Devon Carter','(555) 010-0113'], ['Andre Willis','(555) 010-0114']],
+    baseball:   [['Kyle Mercer','(555) 010-0121'], ['Luis Ortega','(555) 010-0122'], ['Brandon Hayes','(555) 010-0123'], ['Tony Russo','(555) 010-0124']],
+    football:   [['Jamal Fisher','(555) 010-0131'], ['Chris Holloway','(555) 010-0132'], ['Darnell Pierce','(555) 010-0133'], ['Mike Sutton','(555) 010-0134']],
+    soccer:     [['Elena Torres','(555) 010-0141'], ['Sofia Mendes','(555) 010-0143'], ['Ryan Keller','(555) 010-0144'], ['Hannah Doyle','(555) 010-0145']]
+  };
   var COACHES = {};
-  KEYS.forEach(function(s, si){ AGES.forEach(function(a, ai){
-    COACHES[s + '|' + a] = { name: 'Coach to be announced', email: s + '-' + a + '@legendofdoom.example', phone: '(555) 010-0' + (100 + si * 4 + ai) };
+  KEYS.forEach(function(s){ AGES.forEach(function(a, ai){
+    var c = COACH_TABLE[s][ai];
+    COACHES[s + '|' + a] = { name: c[0], email: c[0].toLowerCase().replace(' ', '.') + '@legendofdoom.example', phone: c[1] };
   }); });
   function venueText(s){ var v = VENUE[s]; return v.type + ' practice at the ' + v.name + ', ' + v.where; }
   function tileHTML(s, a){
     var c = COACHES[s + '|' + a], L = SPORTS[s].label;
-    return '<article class="tile"><div class="art s-' + s + '"><small>' + esc(L) + '</small><b>' + esc(a) + '</b></div><div class="row"><h3>' + esc(L) + ' ' + esc(a) + '</h3><button class="plus" type="button" aria-expanded="false" aria-label="Details for ' + esc(L + ' ' + a) + '">+</button></div><p class="more" hidden>Practice Tue, Wed and Thu, ' + esc(TIMES[a]) + '.<br>' + esc(venueText(s)) + '.<br>Games on Saturdays.<br>Coach: ' + esc(c.name) + '</p><div class="addrow"><button class="btn green sm" type="button" data-add="' + esc(s + '|' + a) + '">Add to sign-up</button></div></article>';
+    return '<article class="tile"><div class="art s-' + s + '"><small>' + esc(L) + '</small><b>' + esc(a) + '</b></div><div class="row"><h3>' + esc(L) + ' ' + esc(a) + '</h3><button class="plus" type="button" aria-expanded="false" aria-label="Details for ' + esc(L + ' ' + a) + '">+</button></div><p class="more" hidden>Practice Tue, Wed and Thu, ' + esc(TIMES[a]) + '.<br>' + esc(venueText(s)) + '.<br>Games on Saturdays.<br>Coach: ' + esc(c.name) + ' &middot; ' + esc(c.phone) + '</p><div class="addrow"><button class="btn green sm" type="button" data-add="' + esc(s + '|' + a) + '">Add to sign-up</button></div></article>';
   }
 
   /* ---------- Teams grid ---------- */
@@ -546,12 +589,80 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
     KEYS.forEach(function(s){ AGES.forEach(function(a){
       if (fCoach !== 'all' && fCoach !== s) return;
       var c = COACHES[s + '|' + a];
-      h += '<article class="panel"><h3>' + esc(SPORTS[s].label) + ' ' + esc(a) + '</h3><p class="sub">' + esc(c.name) + ' <span class="ph">Placeholder</span></p><div class="kv"><div><span class="role">Email</span><span class="val" style="font-size:15px"><span data-copy="' + esc(c.email) + '">' + esc(c.email) + '</span><button class="copy" type="button">Copy</button></span></div><div><span class="role">Phone</span><span class="val"><span data-copy="' + esc(c.phone) + '">' + esc(c.phone) + '</span><button class="copy" type="button">Copy</button></span></div></div></article>';
+      h += '<article class="panel"><h3>' + esc(SPORTS[s].label) + ' ' + esc(a) + '</h3><p class="sub">' + esc(c.name) + ', Head Coach</p><div class="kv"><div><span class="role">Email</span><span class="val" style="font-size:15px"><span data-copy="' + esc(c.email) + '">' + esc(c.email) + '</span><button class="copy" type="button">Copy</button></span></div><div><span class="role">Phone</span><span class="val"><span data-copy="' + esc(c.phone) + '">' + esc(c.phone) + '</span><button class="copy" type="button">Copy</button></span></div></div></article>';
     }); });
     $('#coachGrid').innerHTML = h;
   }
   wirePills('#pCoach', function(v){ fCoach = v; }, renderCoaches);
   renderCoaches();
+
+  $('#directorCard').innerHTML = '<div class="dircard"><div><span class="badge">Head Director</span><h3>' + esc(DIRECTOR.name) + '</h3><p>Oversees every sport and age group. Contact the director about registration, schedules, concerns or sponsorship.</p></div><div class="contact"><span><span data-copy="' + esc(DIRECTOR.email) + '">' + esc(DIRECTOR.email) + '</span><button class="copy" type="button">Copy</button></span><span><span data-copy="' + esc(DIRECTOR.phone) + '">' + esc(DIRECTOR.phone) + '</span><button class="copy" type="button">Copy</button></span></div></div>';
+
+  /* ---------- Equipment + uniform designs ---------- */
+  var EQUIP = {
+    basketball: [['Game uniform (jersey + shorts)','Required',65],['Practice reversible jersey','Required',25],['Mouthguard','Required',6],['Warm-up shirt','Optional',30],['Knee pads','Optional',15],['Youth basketball','Optional',24],['Team bag','Optional',35]],
+    baseball:   [['Game uniform (jersey, pants, belt, cap)','Required',95],['Youth glove','Required',45],['Batting helmet','Required',40],['Stirrup socks','Required',10],['Youth bat (approved)','Optional',79],['Team bag','Optional',40]],
+    football:   [['Game uniform (jersey + pants)','Required',90],['Helmet (season rental)','Required',60],['Shoulder pads (season rental)','Required',45],['Girdle with pads','Required',35],['Mouthguard','Required',8],['Gloves','Optional',25],['Team bag','Optional',40]],
+    soccer:     [['Game uniform (jersey, shorts, socks)','Required',55],['Shin guards','Required',15],['Warm-up jacket','Optional',40],['Goalkeeper gloves','Optional',20],['Soccer ball','Optional',22],['Team bag','Optional',35]]
+  };
+  var NUM = { basketball: '24', baseball: '99', football: '23', soccer: '10' };
+  var VARS = {
+    home: { label: 'Home', desc: 'Green with gold numbers', jersey: '#0b6b3a', pants: '#f2b705', trim: '#f2b705', num: '#f2b705', line: '#052a19', pstripe: '#0b6b3a', edge: '#052a19' },
+    away: { label: 'Away', desc: 'White with green and gold', jersey: '#ffffff', pants: '#ffffff', trim: '#0b6b3a', num: '#0b6b3a', line: '#f2b705', pstripe: '#f2b705', edge: '#8b978d' },
+    alt:  { label: 'Alternate', desc: 'Black with gold numbers', jersey: '#141414', pants: '#141414', trim: '#f2b705', num: '#f2b705', line: '#0b6b3a', pstripe: '#f2b705', edge: '#000000' }
+  };
+  function ln(x1, y1, x2, y2, w, c, op){ return '<line x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '" stroke="' + c + '" stroke-width="' + w + '"' + (op ? ' opacity="' + op + '"' : '') + '/>'; }
+  function kitSVG(s, vk){
+    var V = VARS[vk], u = s + vk, J = {
+      football: 'M40 10 L66 4 Q80 20 94 4 L120 10 L152 36 L138 64 L120 54 L120 146 L40 146 L40 54 L22 64 L8 36 Z',
+      baseball: 'M40 10 L66 4 Q80 16 94 4 L120 10 L152 40 L140 68 L120 56 L120 146 L40 146 L40 56 L20 68 L8 40 Z',
+      soccer: 'M40 10 L66 4 L80 28 L94 4 L120 10 L150 36 L136 62 L120 54 L120 146 L40 146 L40 54 L24 62 L10 36 Z',
+      basketball: 'M46 6 L66 6 Q80 34 94 6 L114 6 L110 32 Q102 46 110 66 L114 146 L46 146 L50 66 Q58 46 50 32 Z'
+    }[s];
+    var P = {
+      football: 'M34 0 H126 L132 112 H88 L80 44 L72 112 H28 Z',
+      baseball: 'M34 0 H126 L132 112 H88 L80 44 L72 112 H28 Z',
+      basketball: 'M30 0 H130 L142 98 H88 L80 46 L72 98 H18 Z',
+      soccer: 'M34 0 H126 L134 60 H88 L80 28 L72 60 H26 Z'
+    }[s];
+    var pc = s === 'football' ? V.pants : V.jersey, d = '', pd = '', ex = '', i;
+    if (s === 'football') {
+      [[13.3, 27.5, 27.3, 55.5], [18.6, 19, 32.6, 47]].forEach(function(l){ d += ln(l[0], l[1], l[2], l[3], 4, V.trim) + ln(160 - l[0], l[1], 160 - l[2], l[3], 4, V.trim); });
+      pd += ln(38, 0, 32, 112, 8, V.pstripe) + ln(122, 0, 128, 112, 8, V.pstripe);
+    } else if (s === 'baseball') {
+      for (i = 44; i < 160; i += 7) d += ln(i, 0, i, 150, 0.9, V.trim, 0.9);
+      for (i = 6; i < 40; i += 7) d += ln(i, 0, i, 150, 0.9, V.trim, 0.9);
+      d += ln(80, 8, 80, 146, 1.6, V.trim);
+      for (i = 30; i < 140; i += 20) d += '<circle cx="80" cy="' + i + '" r="2.4" fill="' + V.trim + '"/>';
+      d += ln(14, 54, 30, 66, 5, V.trim) + ln(146, 54, 130, 66, 5, V.trim);
+      for (i = 36; i < 130; i += 7) pd += ln(i, 0, i - (i - 80) * 0.0, 112, 0.9, V.trim, 0.9);
+      pd += '<rect x="26" y="-1" width="108" height="8" fill="#141414"/><rect x="74" y="-1" width="12" height="8" fill="#f2b705"/>';
+    } else if (s === 'soccer') {
+      for (i = -2; i < 6; i++) d += ln(-30 + i * 38, 0, 50 + i * 38, 150, 11, V.trim, 0.3);
+      d += '<polyline points="66,4 80,28 94,4" fill="none" stroke="' + V.trim + '" stroke-width="4"/>';
+      pd += ln(34, 0, 38, 60, 6, V.pstripe) + ln(126, 0, 122, 60, 6, V.pstripe);
+      ex += '<rect x="34" y="68" width="34" height="62" fill="' + V.jersey + '" stroke="' + V.edge + '"/><rect x="92" y="68" width="34" height="62" fill="' + V.jersey + '" stroke="' + V.edge + '"/>' + ln(34, 82, 68, 82, 5, V.trim) + ln(34, 92, 68, 92, 5, V.trim) + ln(92, 82, 126, 82, 5, V.trim) + ln(92, 92, 126, 92, 5, V.trim);
+    } else {
+      pd += ln(26, 0, 22, 98, 7, V.pstripe) + ln(134, 0, 138, 98, 7, V.pstripe);
+    }
+    var crown = '<path d="M71 56 L71 47 L76 52 L80 44 L84 52 L89 47 L89 56 Z" fill="' + V.trim + '" stroke="' + V.line + '" stroke-width="0.8"/>';
+    var jersey = '<g transform="translate(4,4)"><defs><clipPath id="cj' + u + '"><path d="' + J + '"/></clipPath></defs><path d="' + J + '" fill="' + V.jersey + '"/><g clip-path="url(#cj' + u + ')">' + d + '</g><path d="' + J + '" fill="none" stroke="' + (s === 'basketball' ? V.trim : V.edge) + '" stroke-width="' + (s === 'basketball' ? 5 : 1.6) + '" stroke-linejoin="round"/>' + (s === 'basketball' ? '<path d="' + J + '" fill="none" stroke="' + V.edge + '" stroke-width="0.8"/>' : '') + crown + '<text x="80" y="76" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="15" letter-spacing="1.5" fill="' + V.num + '" stroke="' + V.line + '" stroke-width="0.8" paint-order="stroke">DOOM</text><text x="80" y="124" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="48" fill="' + V.num + '" stroke="' + V.line + '" stroke-width="2.2" paint-order="stroke">' + NUM[s] + '</text></g>';
+    var pants = '<g transform="translate(176,10)"><defs><clipPath id="cp' + u + '"><path d="' + P + '"/></clipPath></defs><path d="' + P + '" fill="' + pc + '"/><g clip-path="url(#cp' + u + ')">' + pd + '</g><path d="' + P + '" fill="none" stroke="' + V.edge + '" stroke-width="1.6" stroke-linejoin="round"/>' + ex + '</g>';
+    return '<svg viewBox="0 0 330 158" role="img" aria-label="' + esc(SPORTS[s].label + ' ' + VARS[vk].label + ' uniform: ' + VARS[vk].desc) + '">' + jersey + pants + '</svg>';
+  }
+  var fEquip = 'basketball';
+  function renderEquip(){
+    var s = fEquip, h = '';
+    ['home', 'away', 'alt'].forEach(function(vk){ h += '<div class="kit">' + kitSVG(s, vk) + '<h4>' + esc(VARS[vk].label) + ' ' + esc(SPORTS[s].label) + '</h4><p>' + esc(VARS[vk].desc) + '</p></div>'; });
+    $('#kits').innerHTML = h;
+    $('#swatches').innerHTML = [['Primary Green', '#0b6b3a'], ['Accent Gold', '#f2b705'], ['Alternate Black', '#141414'], ['Away White', '#ffffff']].map(function(c){ return '<div class="sw"><i style="background:' + c[1] + '"></i>' + c[0] + '</div>'; }).join('');
+    var rows = '', req = 0, all = 0;
+    EQUIP[s].forEach(function(r){ rows += '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td><td>$' + r[2] + '</td></tr>'; all += r[2]; if (r[1] === 'Required') req += r[2]; });
+    $('#priceTbl').innerHTML = '<thead><tr><th>Item</th><th>Type</th><th>Price</th></tr></thead><tbody>' + rows + '<tr><td><b>Required items total</b></td><td></td><td>$' + req + '</td></tr></tbody>';
+    $('#priceNote').innerHTML = '<span class="ph">Placeholder</span> Prices are examples. Bring your own cleats or shoes and a water bottle. Uniform art is a design preview and final styling may change.';
+  }
+  wirePills('#pEquip', function(v){ fEquip = v; }, renderEquip);
+  renderEquip();
 
   /* ---------- Sign-up cart ---------- */
   var CART = { kids: [], items: [], parent: { name: '', phone: '', email: '' }, step: 'cart', summary: '' };
@@ -602,7 +713,7 @@ footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px sol
       });
       h += '</div></div><div class="dfoot"><div class="tot"><span>Total</span><span>$' + cartTotal() + '</span></div><div class="msg" id="cartMsg" style="margin:0"></div><button class="btn solid" type="button" data-act="finish">Finish sign-up</button><button class="btn line-b" type="button" data-act="back">Back to cart</button></div>';
     } else {
-      h += '<div class="dbody"><div class="banner" style="margin:0">Your sign-up is ready. Nothing has been sent yet. Copy the summary below and send it to the program director so we can confirm your spots.</div><div class="sumbox" id="sumBox">' + esc(CART.summary) + '</div><div class="kv"><div><span class="role">Director email</span><span class="val" style="font-size:15px">director@legendofdoom.example</span></div><div><span class="role">Director phone</span><span class="val">(555) 010-0142</span></div></div><div class="note-line" style="margin:0"><span class="ph">Placeholder</span> Replace with the real contact.</div></div><div class="dfoot"><button class="btn solid" type="button" data-act="copysum">Copy summary</button><button class="btn line-b" type="button" data-act="clear">Done, clear my cart</button></div>';
+      h += '<div class="dbody"><div class="banner" style="margin:0">Your sign-up is ready. Nothing has been sent yet. Copy the summary below and send it to the program director so we can confirm your spots.</div><div class="sumbox" id="sumBox">' + esc(CART.summary) + '</div><div class="kv"><div><span class="role">' + esc(DIRECTOR.name) + ', Head Director</span><span class="val" style="font-size:15px">' + esc(DIRECTOR.email) + '</span></div><div><span class="role">Phone</span><span class="val">' + esc(DIRECTOR.phone) + '</span></div></div></div><div class="dfoot"><button class="btn solid" type="button" data-act="copysum">Copy summary</button><button class="btn line-b" type="button" data-act="clear">Done, clear my cart</button></div>';
     }
     $('#cartRoot').innerHTML = h + '</div>';
   }
