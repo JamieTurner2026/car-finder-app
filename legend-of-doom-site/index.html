@@ -1,0 +1,914 @@
+<!doctype html><html lang="en"><head><title>Legend of Doom</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="The Legend of Doom youth travel sports program in Statesville, NC: basketball, baseball, football and soccer for ages 5 to 12.">
+<meta name="theme-color" content="#000000"><meta property="og:title" content="The Legend of Doom"><meta property="og:description" content="Youth travel sports for ages 5 to 12 in Statesville, NC."><meta property="og:image" content="logo.jpg">
+<link rel="icon" href="icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap">
+<style>
+/* Layout: deep-green full-bleed hero, then airy white editorial grid (4-up team tiles, split panels, list rows) like the reference page. Green + gold identity. */
+:root {
+  --bg: #ffffff; --fg: #101410; --muted: #596359; --tile: #edf2ed; --card: #f5f8f5; --line: #d8e0d8;
+  --green: #0b6b3a; --green-deep: #052a19; --gold: #f2b705; --on-gold: #1a1400;
+  --hero: #000000; --hero-fg: #ffffff; --danger: #b3261e;
+  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --label: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --text: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg:#0a110c; --fg:#eef3ee; --muted:#9aa79c; --tile:#142019; --card:#101a13; --line:#243028; --green:#3cc277; --danger:#ff8a80; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg:#0a110c; --fg:#eef3ee; --muted:#9aa79c; --tile:#142019; --card:#101a13; --line:#243028; --green:#3cc277; --danger:#ff8a80; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--text); font-size: 16px; line-height: 1.5; }
+img { max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
+h1,h2,h3,h4,p { margin: 0; }
+[hidden] { display: none !important; }
+
+/* top bar */
+.bar { background: var(--hero); color: var(--hero-fg); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--hero); z-index: 10; }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; flex-wrap: wrap; }
+.logo { font-family: var(--display); font-size: 20px; letter-spacing: .04em; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.logo i { width: 28px; height: 28px; background: var(--gold); color: var(--on-gold); display: grid; place-items: center; font-style: normal; font-size: 15px; clip-path: polygon(50% 0, 100% 22%, 100% 70%, 50% 100%, 0 70%, 0 22%); }
+.bar nav { display: flex; gap: 20px; font-family: var(--label); font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; flex-wrap: wrap; }
+.bar nav a { opacity: .8; } .bar nav a:hover { opacity: 1; color: var(--gold); }
+
+/* hero */
+.hero { background: var(--hero); color: var(--hero-fg); text-align: center; padding-block: 56px 72px; }
+.hero h1 { font-family: var(--display); font-weight: 400; text-transform: uppercase; line-height: .92; font-size: clamp(52px, 11vw, 128px); text-wrap: balance; }
+.hero h1 span { color: var(--gold); }
+.hero p { max-width: 560px; margin: 26px auto 0; font-size: 18px; color: #d6e4da; text-wrap: balance; }
+.hero .cta { margin-top: 28px; display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.btn { font-family: var(--label); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: 15px; padding: 11px 22px; border-radius: 999px; border: 2px solid currentColor; display: inline-block; background: transparent; color: inherit; cursor: pointer; }
+.btn.solid { background: var(--gold); border-color: var(--gold); color: var(--on-gold); }
+.btn.green { background: var(--green-deep); border-color: var(--green-deep); color: #fff; }
+.btn.sm { font-size: 13px; padding: 7px 14px; }
+.btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* section intro */
+.sec { padding-block: 72px 8px; }
+.intro { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; padding-bottom: 28px; }
+.intro .k { font-family: var(--label); font-weight: 600; font-size: 15px; }
+.intro p { max-width: 640px; }
+.pillrow { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px; align-items: center; }
+.pillrow .lab { font: 600 12px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.pills { display: flex; gap: 4px; flex-wrap: wrap; background: var(--tile); border-radius: 999px; padding: 5px; max-width: 100%; }
+.pills button { font: 600 12px/1 var(--label); letter-spacing: .06em; text-transform: uppercase; border: 0; background: transparent; color: var(--fg); padding: 9px 13px; border-radius: 999px; cursor: pointer; }
+.pills button[aria-pressed="true"] { background: var(--green-deep); color: #fff; }
+
+/* tiles */
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 18px; }
+.art { position: relative; aspect-ratio: 1 / .86; overflow: hidden; background: var(--tile); isolation: isolate; }
+.art b { position: absolute; right: 8%; bottom: 8%; font-family: var(--display); font-weight: 400; font-size: 84px; line-height: .8; color: rgba(255,255,255,.92); }
+.art small { position: absolute; left: 12px; top: 10px; font: 700 12px var(--label); letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.9); }
+.s-basketball { background: radial-gradient(circle at 80% 20%, #f2b705 0 16%, transparent 17%), repeating-linear-gradient(135deg, #0b6b3a 0 22px, #095a31 22px 44px); }
+.s-baseball { background: linear-gradient(160deg, #052a19, #0b6b3a); }
+.s-baseball::after { content:""; position:absolute; left:-10%; bottom:-30%; width:70%; aspect-ratio:1; border-radius:50%; background:#f2b705; z-index:-1; opacity:.95; }
+.s-football { background: repeating-linear-gradient(90deg, #0b6b3a 0 28px, #0e7c44 28px 56px); }
+.s-football::after { content:""; position:absolute; inset:auto 0 0 0; height:34%; background:#f2b705; z-index:-1; }
+.s-football b { color:#052a19; }
+.s-soccer { background: conic-gradient(from 200deg at 28% 78%, #f2b705, #0b6b3a, #052a19, #f2b705); }
+.tile { min-width: 0; }
+.tile .row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding-top: 12px; }
+.tile h3 { font-size: 15px; font-weight: 600; line-height: 1.25; }
+.plus { flex: none; width: 24px; height: 24px; border-radius: 50%; border: 0; background: var(--fg); color: var(--bg); font-size: 17px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0; }
+.tile .more { color: var(--muted); font-size: 14px; padding-top: 6px; }
+
+/* panels */
+.panel { background: var(--card); border: 1px solid var(--line); padding: 24px; min-width: 0; }
+.panel h3 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+.panel .sub { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+.split { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+.kv { display: grid; gap: 0; }
+.kv > div { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); }
+.kv > div:first-child { border-top: 0; }
+.kv .who { font-weight: 600; }
+.kv .role { color: var(--muted); font-size: 13px; }
+.kv .val { font-family: var(--label); font-weight: 700; font-size: 18px; letter-spacing: .02em; text-align: right; overflow-wrap: anywhere; }
+.copy { font: 600 11px var(--label); letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 3px 9px; border-radius: 999px; cursor: pointer; margin-left: 8px; }
+.ph { display: inline-block; font: 600 10px var(--label); letter-spacing: .1em; text-transform: uppercase; background: var(--gold); color: var(--on-gold); padding: 1px 6px; border-radius: 3px; vertical-align: middle; margin-left: 6px; }
+.note-line { font-size: 13px; color: var(--muted); margin-top: 14px; }
+
+/* forms */
+label { display: grid; gap: 4px; font: 600 12px var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+input, select, textarea { font: 400 15px var(--text); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 9px 10px; width: 100%; min-width: 0; letter-spacing: 0; text-transform: none; }
+textarea { min-height: 84px; resize: vertical; }
+.frow { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.chk { display: flex; gap: 8px; align-items: flex-start; font: 400 14px var(--text); letter-spacing: 0; text-transform: none; color: var(--fg); padding: 4px 0; }
+.chk input { width: auto; margin-top: 4px; }
+.msg { font-size: 14px; color: var(--muted); min-height: 20px; margin-top: 8px; }
+.msg.err { color: var(--danger); }
+.empty { border: 1px dashed var(--line); padding: 20px; color: var(--muted); font-size: 15px; }
+.banner { background: var(--gold); color: var(--on-gold); padding: 10px 14px; font-size: 14px; font-weight: 500; margin-bottom: 16px; }
+
+/* player card */
+.ptabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.ptabs button { font: 700 13px var(--label); letter-spacing: .06em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.ptabs button[aria-pressed="true"] { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
+.phead { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.jersey { font-family: var(--display); font-size: 40px; width: 72px; height: 72px; background: var(--green-deep); color: var(--gold); display: grid; place-items: center; clip-path: polygon(50% 0, 100% 16%, 100% 72%, 50% 100%, 0 72%, 0 16%); }
+.phead h3 { font-size: 26px; margin: 0; }
+.phead p { color: var(--muted); font-size: 14px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.stat { background: var(--bg); border: 1px solid var(--line); padding: 12px; }
+.stat b { display: block; font-family: var(--display); font-weight: 400; font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { font: 600 12px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.stat em { display: block; font-style: normal; font-size: 12px; color: var(--muted); }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.cols > div { min-width: 0; }
+h4 { font: 700 13px var(--label); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { text-align: right; padding: 7px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
+th { font: 700 11px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.chart { width: 100%; height: auto; display: block; margin-bottom: 18px; }
+.chart .bar-r { fill: var(--green); } .chart text { fill: var(--fg); font: 600 11px var(--text); } .chart .ax { stroke: var(--line); }
+.chart .dl { fill: var(--muted); font-weight: 400; font-size: 9px; }
+.note { border-left: 4px solid var(--gold); background: var(--bg); padding: 12px 14px; margin-bottom: 12px; }
+.note .meta { display: flex; gap: 10px; align-items: center; font: 600 12px var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; flex-wrap: wrap; }
+.note .area { background: var(--green-deep); color: #fff; padding: 2px 8px; border-radius: 3px; }
+.note ul { list-style: none; padding: 0; margin: 10px 0 0; }
+.rm { margin-left: auto; font: 600 11px var(--label); letter-spacing: .08em; text-transform: uppercase; background: transparent; border: 0; color: var(--danger); cursor: pointer; }
+
+/* chat */
+.chatbox { height: 340px; overflow-y: auto; background: var(--bg); border: 1px solid var(--line); padding: 12px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.m { max-width: 85%; padding: 8px 12px; background: var(--tile); border-radius: 10px; overflow-wrap: anywhere; }
+.m.me { align-self: flex-end; background: var(--green-deep); color: #fff; }
+.m .by { font: 700 11px var(--label); letter-spacing: .08em; text-transform: uppercase; opacity: .75; }
+.m .t { font-size: 11px; opacity: .6; margin-left: 6px; }
+.sendrow { display: flex; gap: 8px; }
+
+/* list rows */
+.list { border-top: 1px solid var(--line); }
+.list div { display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.list i { width: 56px; height: 40px; }
+.list h3 { font-size: clamp(24px, 3.4vw, 36px); font-weight: 500; line-height: 1.1; letter-spacing: -.01em; }
+
+/* footer */
+footer { background: var(--hero); color: #cfe0d4; padding-block: 36px; font-size: 13px; margin-top: 72px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+footer .fine { width: 100%; color: #84a08d; font-size: 11px; border-top: 1px solid #14402a; padding-top: 16px; }
+
+/* logo, hero, cart button */
+.navlogo { height: 46px; width: auto; display: block; }
+.hero { padding-block: 20px 56px; }
+.herologo { width: min(760px, 100%); height: auto; display: block; margin: 0 auto; }
+.hero .tagline { font-family: var(--display); font-size: clamp(22px, 4vw, 36px); letter-spacing: .06em; text-transform: uppercase; color: var(--gold); margin-top: 8px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.cartbtn { font: 700 13px var(--label); letter-spacing: .08em; text-transform: uppercase; background: var(--gold); color: var(--on-gold); border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; white-space: nowrap; }
+.cartbtn span { display: inline-grid; place-items: center; min-width: 20px; height: 20px; border-radius: 10px; background: var(--on-gold); color: var(--gold); margin-left: 6px; padding: 0 5px; font-size: 12px; }
+.tile .addrow { padding-top: 10px; }
+
+/* calendar */
+.calbar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.calbar label { min-width: 150px; flex: 1 1 150px; max-width: 220px; }
+.calhead { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+.calhead h3 { font-size: 22px; margin: 0; }
+.calnav { display: flex; gap: 8px; }
+.cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-bottom: 18px; }
+.cal .dow { font: 700 11px var(--label); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 4px 0; }
+.day { min-height: 66px; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 5px; text-align: left; cursor: pointer; color: var(--fg); font: 600 13px var(--text); display: flex; flex-direction: column; gap: 4px; align-items: flex-start; min-width: 0; }
+.day.out { opacity: .45; }
+.day.today { outline: 2px solid var(--gold); }
+.day[aria-pressed="true"] { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
+.dot { font: 700 10px var(--label); letter-spacing: .04em; text-transform: uppercase; padding: 1px 5px; border-radius: 3px; }
+.dot.p { background: #0b6b3a; color: #fff; }
+.dot.g { background: #f2b705; color: #1a1400; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 14px; align-items: center; }
+.dtl h3 { font-size: 20px; margin-bottom: 4px; }
+
+/* coaches */
+.coachgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+
+/* cart drawer */
+.scrim { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 30; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(460px, 100%); background: var(--bg); color: var(--fg); z-index: 31; display: flex; flex-direction: column; box-shadow: -8px 0 30px rgba(0,0,0,.35); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.dhead { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+.dhead h3 { font: 400 24px var(--display); letter-spacing: .03em; text-transform: uppercase; margin: 0; }
+.xbtn { border: 1px solid var(--line); background: var(--bg); color: var(--fg); width: 34px; height: 34px; border-radius: 50%; font-size: 18px; cursor: pointer; }
+.dbody { flex: 1; overflow-y: auto; padding: 16px 18px; display: grid; gap: 16px; align-content: start; }
+.dfoot { border-top: 1px solid var(--line); padding: 14px 18px; display: grid; gap: 10px; }
+.dfoot .tot { display: flex; justify-content: space-between; font-weight: 600; }
+.line { border: 1px solid var(--line); background: var(--card); padding: 12px; display: grid; gap: 8px; }
+.line .top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.line .fee { font: 700 18px var(--label); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.chip { display: inline-flex; gap: 8px; align-items: center; background: var(--tile); border-radius: 999px; padding: 4px 6px 4px 12px; font-size: 14px; }
+.chip button { border: 0; background: var(--fg); color: var(--bg); width: 18px; height: 18px; border-radius: 50%; font-size: 12px; cursor: pointer; line-height: 1; padding: 0; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: max(20px, env(safe-area-inset-bottom, 0px)); background: #052a19; color: #fff; padding: 12px 16px; border-radius: 10px; z-index: 40; display: flex; gap: 14px; align-items: center; font-size: 14px; max-width: calc(100% - 32px); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+.toast button { background: #f2b705; color: #1a1400; border: 0; border-radius: 999px; font: 700 12px var(--label); letter-spacing: .08em; text-transform: uppercase; padding: 6px 12px; cursor: pointer; white-space: nowrap; }
+.sumbox { white-space: pre-wrap; font: 13px/1.5 ui-monospace, Menlo, Consolas, monospace; background: var(--card); border: 1px solid var(--line); padding: 12px; max-height: 280px; overflow: auto; overflow-wrap: anywhere; }
+.btn.line-b { color: var(--fg); }
+
+@media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } .intro, .split, .cols { grid-template-columns: 1fr; } .coachgrid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .day { min-height: 54px; padding: 3px; font-size: 12px; } .dot { font-size: 8px; padding: 1px 3px; } .navlogo { height: 38px; } }
+@media (max-width: 480px) { .grid { grid-template-columns: 1fr; } .bar nav { gap: 12px; font-size: 12px; } .kv > div { grid-template-columns: 1fr; } .kv .val { text-align: left; } }
+</style>
+
+</head><body><header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="The Legend of Doom home"><img class="navlogo" src="logo.jpg" alt="The Legend of Doom"></a>
+    <nav aria-label="Main">
+      <a href="#teams">Teams</a><a href="#calendar">Calendar</a><a href="#coaches">Coaches</a><a href="#portal" data-rt>Player Stats</a><a href="#chat" data-rt>Team Chat</a><a href="#contact">Contact</a><a href="#coach" id="coachNav" hidden>Coach Console</a>
+      <button class="cartbtn" id="cartBtn" type="button" aria-haspopup="dialog">Sign-up cart<span id="cartCount">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <h1 class="sr">The Legend of Doom</h1>
+    <img class="herologo" src="logo.jpg" alt="The Legend of Doom logo: a hooded figure with glowing green eyes and a gold crown">
+    <div class="tagline">Four sports. One legend.</div>
+    <p>The Legend of Doom is a youth travel program for basketball, baseball, football and soccer. Ages 5 to 12, practicing in Statesville, NC.</p>
+    <div class="cta"><a class="btn solid" href="#teams">Sign up for a team</a><a class="btn" href="#calendar">See the calendar</a><a class="btn" href="#coaches">Meet the coaches</a></div>
+  </div>
+</section>
+
+<main>
+  <!-- TEAMS -->
+  <section class="wrap sec" id="teams">
+    <div class="intro"><span class="k">Our teams</span><p>We field a team in every sport for four age groups. Choose a sport or age group to see the teams, then open a tile for practice details.</p></div>
+    <div class="pillrow">
+      <span class="lab">Sport</span>
+      <div class="pills" id="pSport" role="group" aria-label="Filter by sport">
+        <button type="button" data-v="all" aria-pressed="true">All</button><button type="button" data-v="basketball" aria-pressed="false">Basketball</button><button type="button" data-v="baseball" aria-pressed="false">Baseball</button><button type="button" data-v="football" aria-pressed="false">Football</button><button type="button" data-v="soccer" aria-pressed="false">Soccer</button>
+      </div>
+      <span class="lab">Age</span>
+      <div class="pills" id="pAge" role="group" aria-label="Filter by age group">
+        <button type="button" data-v="all" aria-pressed="true">All</button><button type="button" data-v="5-6" aria-pressed="false">5-6</button><button type="button" data-v="7-8" aria-pressed="false">7-8</button><button type="button" data-v="9-10" aria-pressed="false">9-10</button><button type="button" data-v="11-12" aria-pressed="false">11-12</button>
+      </div>
+    </div>
+    <div class="grid" id="teamGrid"></div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section class="wrap sec" id="calendar">
+    <div class="intro"><span class="k">Practice &amp; game calendar</span><p>Every team practices three times a week, Tuesday, Wednesday and Thursday. Games are on Saturdays. Pick a sport and age group, then tap a day for times and locations.</p></div>
+    <div class="split" style="margin-bottom:20px">
+      <div class="panel">
+        <h3>Outdoor practice</h3>
+        <p class="sub">Baseball, football and soccer</p>
+        <p><strong>Soccer Complex</strong><br>Statesville, NC</p>
+        <p style="margin-top:12px"><a class="btn green sm" href="https://www.google.com/maps/search/?api=1&amp;query=soccer+complex+Statesville+NC" target="_blank" rel="noopener">Open in maps</a></p>
+      </div>
+      <div class="panel">
+        <h3>Indoor practice</h3>
+        <p class="sub">Basketball</p>
+        <p><strong>Recreation Center</strong><br>Statesville, NC</p>
+        <p style="margin-top:12px"><a class="btn green sm" href="https://www.google.com/maps/search/?api=1&amp;query=recreation+center+Statesville+NC" target="_blank" rel="noopener">Open in maps</a></p>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="calbar">
+        <label>Sport<select id="calSport"><option value="all">All sports</option><option value="basketball">Basketball</option><option value="baseball">Baseball</option><option value="football">Football</option><option value="soccer">Soccer</option></select></label>
+        <label>Age group<select id="calAge"><option value="all">All ages</option><option>5-6</option><option>7-8</option><option>9-10</option><option>11-12</option></select></label>
+      </div>
+      <div class="calhead"><h3 id="calTitle"></h3><div class="calnav"><button class="btn sm line-b" type="button" id="calPrev" aria-label="Previous month">Prev</button><button class="btn sm line-b" type="button" id="calToday">Today</button><button class="btn sm line-b" type="button" id="calNext" aria-label="Next month">Next</button></div></div>
+      <div class="legend"><span class="dot p">Prac</span> Practice (Tue, Wed, Thu) <span class="dot g">Game</span> Game day (Sat) <span class="ph">Placeholder schedule</span></div>
+      <div class="cal" id="calGrid"></div>
+      <div class="dtl" id="calDetail"></div>
+    </div>
+  </section>
+
+  <!-- COACHES -->
+  <section class="wrap sec" id="coaches">
+    <div class="intro"><span class="k">Coaches</span><p>Each team has its own coach. Reach out about practice, game day changes and playing time.</p></div>
+    <div class="pillrow">
+      <span class="lab">Sport</span>
+      <div class="pills" id="pCoach" role="group" aria-label="Filter coaches by sport">
+        <button type="button" data-v="all" aria-pressed="true">All</button><button type="button" data-v="basketball" aria-pressed="false">Basketball</button><button type="button" data-v="baseball" aria-pressed="false">Baseball</button><button type="button" data-v="football" aria-pressed="false">Football</button><button type="button" data-v="soccer" aria-pressed="false">Soccer</button>
+      </div>
+    </div>
+    <div class="coachgrid" id="coachGrid"></div>
+    <p class="note-line"><span class="ph">Placeholder</span> Coach names, emails and phone numbers are examples. Send the real ones and they replace these.</p>
+  </section>
+
+  <section class="wrap sec" id="soon" hidden>
+    <div class="panel"><h3>Player stats and parents chat</h3><p class="sub">Coming soon. Parents will be able to follow their child's game stats, read coach notes and get drills to practice at home, and chat with the team. Ask your coach when it opens.</p></div>
+  </section>
+
+  <!-- PORTAL -->
+  <section class="wrap sec" id="portal" data-rt>
+    <div class="intro"><span class="k">Player stats</span><p>Parents can follow their child's game stats, read the coach's notes on what to improve, and get drills to practice at home. Sign in with your Claude account, then ask the coach to link your child.</p></div>
+    <div class="panel">
+      <div id="portalBody"><div class="empty">Loading your player portal...</div></div>
+    </div>
+    <div class="panel" style="margin-top:20px" id="linkPanel" hidden>
+      <h3>Link your child to your account</h3>
+      <p class="sub">Send the coach your child's name, sport and age group. Once the coach adds them to the roster, their stats and notes show up above.</p>
+      <form id="linkForm">
+        <div class="frow">
+          <label>Child's first name<input id="lfName" required maxlength="40" autocomplete="off"></label>
+          <label>Sport<select id="lfSport"><option value="basketball">Basketball</option><option value="baseball">Baseball</option><option value="football">Football</option><option value="soccer">Soccer</option></select></label>
+          <label>Age group<select id="lfAge"><option>5-6</option><option>7-8</option><option>9-10</option><option>11-12</option></select></label>
+        </div>
+        <button class="btn green sm" type="submit">Send to coach</button>
+        <div class="msg" id="lfMsg"></div>
+        <div id="lfList"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- COACH -->
+  <section class="wrap sec" id="coach" hidden>
+    <div class="intro"><span class="k">Coach console</span><p>Only coaches (people with Editor access to this page) see this section. Add new players from parent requests, enter game stats, and write notes with recommended drills.</p></div>
+    <div class="panel"><div id="coachBody"><div class="empty">Loading roster...</div></div></div>
+  </section>
+
+  <!-- CHAT -->
+  <section class="wrap sec" id="chat" data-rt>
+    <div class="intro"><span class="k">Parents group chat</span><p>One chat room for each team, so parents and the coach talk in one place. Pick your sport and age group.</p></div>
+    <div class="panel">
+      <div class="frow" style="max-width:420px">
+        <label>Sport<select id="chSport"><option value="basketball">Basketball</option><option value="baseball">Baseball</option><option value="football">Football</option><option value="soccer">Soccer</option></select></label>
+        <label>Age group<select id="chAge"><option>5-6</option><option>7-8</option><option>9-10</option><option>11-12</option></select></label>
+      </div>
+      <div class="chatbox" id="chatBox" role="log" aria-live="polite"><div class="empty">Sign in to join the chat.</div></div>
+      <form class="sendrow" id="chatForm">
+        <input id="chatText" maxlength="500" placeholder="Message your team" autocomplete="off" aria-label="Message">
+        <button class="btn green" type="submit" id="chatSend" disabled>Send</button>
+      </form>
+      <div class="msg" id="chatMsg"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="wrap sec" id="contact">
+    <div class="intro"><span class="k">Contact</span><p>Reach the coaches, the program director and our team doctors. In an emergency call 911 first.</p></div>
+    <div class="split">
+      <div class="panel">
+        <h3>Coaches &amp; staff</h3>
+        <p class="sub">Replace these placeholders with real details.</p>
+        <div class="kv">
+          <div><div><span class="who">Program director</span><br><span class="role">Registration, fees, schedules</span></div><span class="val"><span data-copy="director@legendofdoom.example">director@legendofdoom.example</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Head coach</span><br><span class="role">Team questions</span></div><span class="val"><span data-copy="coach@legendofdoom.example">coach@legendofdoom.example</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Director phone</span><br><span class="role">Call or text</span></div><span class="val"><span data-copy="(555) 010-0142">(555) 010-0142</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Head coach phone</span><br><span class="role">Game day changes</span></div><span class="val"><span data-copy="(555) 010-0187">(555) 010-0187</span><button class="copy" type="button">Copy</button></span></div>
+        </div>
+        <p class="note-line"><span class="ph">Placeholder</span> Example addresses and numbers only.</p>
+      </div>
+      <div class="panel">
+        <h3>Team doctors</h3>
+        <p class="sub">On call for injuries, concussion checks and return-to-play clearance.</p>
+        <div class="kv">
+          <div><div><span class="who">Team physician</span><br><span class="role">Sports medicine</span></div><span class="val"><span data-copy="(555) 010-0210">(555) 010-0210</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Team pediatrician</span><br><span class="role">Youth health, physicals</span></div><span class="val"><span data-copy="(555) 010-0233">(555) 010-0233</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Athletic trainer</span><br><span class="role">On site at games</span></div><span class="val"><span data-copy="(555) 010-0256">(555) 010-0256</span><button class="copy" type="button">Copy</button></span></div>
+          <div><div><span class="who">Emergency</span><br><span class="role">Any time</span></div><span class="val">911</span></div>
+        </div>
+        <p class="note-line"><span class="ph">Placeholder</span> Add the real doctors' names and numbers.</p>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:20px" data-rt>
+      <h3>Parents group chat</h3>
+      <p class="sub">Your team's chat room is on this site. Everything you post is visible to that team's parents and coaches.</p>
+      <a class="btn green sm" href="#chat">Open the chat</a>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="intro"><span class="k">What we stand for</span><p>Our program comes to life through four priorities.</p></div>
+    <div class="list">
+      <div><i class="art s-basketball"></i><h3>Compete With Heart</h3></div>
+      <div><i class="art s-baseball"></i><h3>Develop the Whole Player</h3></div>
+      <div><i class="art s-football"></i><h3>Practice at Home Too</h3></div>
+      <div><i class="art s-soccer"></i><h3>Parents and Coaches as One Team</h3></div>
+    </div>
+  </section>
+</main>
+
+<div id="cartRoot"></div>
+<footer>
+  <div class="wrap">
+    <div><img src="logo.jpg" alt="The Legend of Doom" style="height:64px;width:auto;display:block;margin-bottom:6px">Youth travel sports, ages 5 to 12 &middot; Statesville, NC</div>
+    <div>Basketball &middot; Baseball &middot; Football &middot; Soccer</div>
+    <p class="fine">Schedules, fees, coach names and contact details shown are placeholders until the program confirms them.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var SPORTS = {
+    basketball: { label: 'Basketball', stats: [['pts','PTS'],['reb','REB'],['ast','AST'],['stl','STL']] },
+    baseball:   { label: 'Baseball',   stats: [['ab','AB'],['h','H'],['r','R'],['rbi','RBI']], avg: true },
+    football:   { label: 'Football',   stats: [['td','TD'],['tkl','TKL'],['yds','YDS'],['int','INT']] },
+    soccer:     { label: 'Soccer',     stats: [['g','G'],['a','A'],['sh','SH'],['sv','SAV']] }
+  };
+  var KEYS = ['basketball','baseball','football','soccer'], AGES = ['5-6','7-8','9-10','11-12'];
+  var DRILLS = {
+    basketball: {
+      'Ball handling': ['Stationary dribble series (right, left, crossover), 3 sets of 30 seconds','Cone weave dribble, 5 rounds'],
+      'Shooting': ['Form shooting from 3 feet, make 25','Free throws: 20 attempts, write down makes'],
+      'Defense': ['Defensive slides along a line, 4 x 20 seconds','Mirror drill with a sibling or parent'],
+      'Rebounding & finishing': ['Wall toss and rebound, 30 reps','Layups with both hands, 20 each side']
+    },
+    baseball: {
+      'Hitting': ['Tee work, 30 swings, same contact point','Soft toss with a partner, 20 swings'],
+      'Throwing': ['Towel drill for arm path, 20 reps','Partner catch at 30 feet, 25 throws'],
+      'Fielding': ['Ground ball funnel, 20 reps','Fly ball catches off a bounce, 15 reps'],
+      'Base running': ['Home to first sprints, 8 reps','Lead and return drill, 10 reps']
+    },
+    football: {
+      'Catching & throwing': ['Catch 20 soft tosses with hands only','One-handed tennis ball catches, 10 each hand'],
+      'Tackling form': ['Form tackle on a pillow, 10 reps (adult supervised)','Wrap-and-roll drill on a mat, 8 reps'],
+      'Speed & agility': ['Cone ladder, 5 rounds','Short sprints, 4 x 20 yards, time each'],
+      'Footwork': ['Quick feet drill, 3 x 20 seconds','Backpedal and break, 8 reps']
+    },
+    soccer: {
+      'Dribbling': ['Cone dribbling with both feet, 5 rounds','Toe taps, 3 x 30 seconds'],
+      'Passing': ['Wall passes with the inside of the foot, 50 reps','Pass-and-move with a partner, 5 minutes'],
+      'Shooting': ['Shoot at a target, 20 shots each foot','Juggling, beat your personal best'],
+      'First touch': ['Throw-and-trap, 30 reps','Receive off the wall, alternate feet, 30 reps']
+    }
+  };
+  var SAMPLE = { id: 'sample', sample: true, name: 'Sample Player', sport: 'basketball', age: '9-10', jersey: '12',
+    games: [
+      { id:'g1', date:'2026-09-06', opp:'Eagles', v:{pts:6,reb:3,ast:1,stl:1} },
+      { id:'g2', date:'2026-09-13', opp:'Lions', v:{pts:8,reb:4,ast:2,stl:2} },
+      { id:'g3', date:'2026-09-20', opp:'Hawks', v:{pts:5,reb:2,ast:3,stl:0} },
+      { id:'g4', date:'2026-09-27', opp:'Wolves', v:{pts:11,reb:5,ast:2,stl:3} }
+    ],
+    notes: [
+      { id:'n1', ts: 1790000000000, area:'Ball handling', text:'Strong first step. Keeps losing the ball when pressured with the left hand. Spend a few minutes a day on weak-hand dribbling.', drills:['Stationary dribble series (right, left, crossover), 3 sets of 30 seconds','Cone weave dribble, 5 rounds'] },
+      { id:'n2', ts: 1790500000000, area:'Shooting', text:'Good effort at the free throw line. Keep elbow under the ball and follow through.', drills:['Free throws: 20 attempts, write down makes'] }
+    ] };
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function $(s, r){ return (r || document).querySelector(s); }
+  function rid(p){ return p + Date.now().toString(36) + Math.floor(Math.random()*1296).toString(36); }
+  function fmtDate(t){ try { return new Date(t).toLocaleDateString(undefined, {month:'short', day:'numeric'}); } catch(e){ return ''; } }
+  function ls(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch(e){} return null; }
+
+  /* ---------- Program data (edit these to update the site) ---------- */
+  var PRACTICE_DAYS = [2, 3, 4]; /* Tue, Wed, Thu */
+  var TIMES = { '5-6': '4:30 - 5:30 PM', '7-8': '5:15 - 6:15 PM', '9-10': '6:00 - 7:00 PM', '11-12': '6:45 - 7:45 PM' };
+  var FEES = { basketball: 85, baseball: 95, football: 110, soccer: 80 }; /* placeholder fees */
+  var VENUE = {
+    basketball: { name: 'Recreation Center', where: 'Statesville, NC', type: 'Indoor' },
+    baseball:   { name: 'Soccer Complex',    where: 'Statesville, NC', type: 'Outdoor' },
+    football:   { name: 'Soccer Complex',    where: 'Statesville, NC', type: 'Outdoor' },
+    soccer:     { name: 'Soccer Complex',    where: 'Statesville, NC', type: 'Outdoor' }
+  };
+  var COACHES = {};
+  KEYS.forEach(function(s, si){ AGES.forEach(function(a, ai){
+    COACHES[s + '|' + a] = { name: 'Coach to be announced', email: s + '-' + a + '@legendofdoom.example', phone: '(555) 010-0' + (100 + si * 4 + ai) };
+  }); });
+  function venueText(s){ var v = VENUE[s]; return v.type + ' practice at the ' + v.name + ', ' + v.where; }
+  function tileHTML(s, a){
+    var c = COACHES[s + '|' + a], L = SPORTS[s].label;
+    return '<article class="tile"><div class="art s-' + s + '"><small>' + esc(L) + '</small><b>' + esc(a) + '</b></div><div class="row"><h3>' + esc(L) + ' ' + esc(a) + '</h3><button class="plus" type="button" aria-expanded="false" aria-label="Details for ' + esc(L + ' ' + a) + '">+</button></div><p class="more" hidden>Practice Tue, Wed and Thu, ' + esc(TIMES[a]) + '.<br>' + esc(venueText(s)) + '.<br>Games on Saturdays.<br>Coach: ' + esc(c.name) + '</p><div class="addrow"><button class="btn green sm" type="button" data-add="' + esc(s + '|' + a) + '">Add to sign-up</button></div></article>';
+  }
+
+  /* ---------- Teams grid ---------- */
+  var fSport = 'all', fAge = 'all';
+  function renderTeams(){
+    var h = '';
+    KEYS.forEach(function(s){ AGES.forEach(function(a){
+      if ((fSport === 'all' || fSport === s) && (fAge === 'all' || fAge === a)) {
+        h += tileHTML(s, a);
+      }
+    }); });
+    $('#teamGrid').innerHTML = h || '<div class="empty">No teams match.</div>';
+  }
+  function wirePills(id, setter, after){
+    var box = $(id);
+    box.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (!b) return;
+      box.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      setter(b.getAttribute('data-v')); (after || renderTeams)();
+    });
+  }
+  wirePills('#pSport', function(v){ fSport = v; });
+  wirePills('#pAge', function(v){ fAge = v; });
+  $('#teamGrid').addEventListener('click', function(e){
+    var b = e.target.closest('.plus'); if (!b) return;
+    var more = b.closest('.tile').querySelector('.more'), open = more.hidden;
+    more.hidden = !open; b.setAttribute('aria-expanded', open ? 'true' : 'false'); b.textContent = open ? '−' : '+';
+  });
+  renderTeams();
+
+  /* ---------- Calendar ---------- */
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  var now0 = new Date(), calY = now0.getFullYear(), calM = now0.getMonth(), calSel = ymd(now0);
+  function kindOf(d){ var w = d.getDay(); return PRACTICE_DAYS.indexOf(w) >= 0 ? 'p' : (w === 6 ? 'g' : null); }
+  function renderCal(){
+    var first = new Date(calY, calM, 1), start = new Date(calY, calM, 1 - first.getDay()), todayKey = ymd(new Date()), h = '';
+    $('#calTitle').textContent = MONTHS[calM] + ' ' + calY;
+    DOW.forEach(function(d){ h += '<div class="dow">' + d + '</div>'; });
+    for (var i = 0; i < 42; i++) {
+      var d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
+      if (i >= 28 && i % 7 === 0 && d.getMonth() !== calM) break;
+      var key = ymd(d), k = kindOf(d);
+      h += '<button type="button" class="day' + (d.getMonth() !== calM ? ' out' : '') + (key === todayKey ? ' today' : '') + '" data-d="' + key + '" aria-pressed="' + (key === calSel) + '" aria-label="' + esc(d.toDateString() + (k === 'p' ? ', practice' : k === 'g' ? ', game day' : '')) + '">' + d.getDate() + (k === 'p' ? '<span class="dot p">Prac</span>' : k === 'g' ? '<span class="dot g">Game</span>' : '') + '</button>';
+    }
+    $('#calGrid').innerHTML = h;
+    renderDetail();
+  }
+  function renderDetail(){
+    var p = calSel.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]), k = kindOf(d), fs = $('#calSport').value, fa = $('#calAge').value;
+    var title = d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }), h = '<h3>' + esc(title) + '</h3>';
+    if (!k) { $('#calDetail').innerHTML = h + '<p class="sub" style="margin:0">No practice or games. Rest day.</p>'; return; }
+    var rows = '';
+    KEYS.forEach(function(s){ AGES.forEach(function(a){
+      if ((fs === 'all' || fs === s) && (fa === 'all' || fa === a)) {
+        rows += '<tr><td>' + esc(SPORTS[s].label + ' ' + a) + '</td><td>' + (k === 'p' ? esc(TIMES[a]) : 'Time from coach') + '</td><td>' + (k === 'p' ? esc(VENUE[s].name + ' (' + VENUE[s].type.toLowerCase() + ')') : 'Posted by coach') + '</td></tr>';
+      }
+    }); });
+    h += '<p class="sub" style="margin-bottom:10px">' + (k === 'p' ? 'Practice day' : 'Game day. Opponents, start times and field or gym are posted by each coach.') + '</p><div class="scroll"><table><thead><tr><th>Team</th><th>Time</th><th>Where</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+    $('#calDetail').innerHTML = h;
+  }
+  $('#calSport').addEventListener('change', renderDetail);
+  $('#calAge').addEventListener('change', renderDetail);
+  $('#calPrev').addEventListener('click', function(){ calM--; if (calM < 0) { calM = 11; calY--; } renderCal(); });
+  $('#calNext').addEventListener('click', function(){ calM++; if (calM > 11) { calM = 0; calY++; } renderCal(); });
+  $('#calToday').addEventListener('click', function(){ var n = new Date(); calY = n.getFullYear(); calM = n.getMonth(); calSel = ymd(n); renderCal(); });
+  $('#calGrid').addEventListener('click', function(e){
+    var b = e.target.closest('.day'); if (!b) return;
+    calSel = b.getAttribute('data-d'); $('#calGrid').querySelectorAll('.day').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); renderDetail();
+  });
+  renderCal();
+
+  /* ---------- Coaches ---------- */
+  var fCoach = 'all';
+  function renderCoaches(){
+    var h = '';
+    KEYS.forEach(function(s){ AGES.forEach(function(a){
+      if (fCoach !== 'all' && fCoach !== s) return;
+      var c = COACHES[s + '|' + a];
+      h += '<article class="panel"><h3>' + esc(SPORTS[s].label) + ' ' + esc(a) + '</h3><p class="sub">' + esc(c.name) + ' <span class="ph">Placeholder</span></p><div class="kv"><div><span class="role">Email</span><span class="val" style="font-size:15px"><span data-copy="' + esc(c.email) + '">' + esc(c.email) + '</span><button class="copy" type="button">Copy</button></span></div><div><span class="role">Phone</span><span class="val"><span data-copy="' + esc(c.phone) + '">' + esc(c.phone) + '</span><button class="copy" type="button">Copy</button></span></div></div></article>';
+    }); });
+    $('#coachGrid').innerHTML = h;
+  }
+  wirePills('#pCoach', function(v){ fCoach = v; }, renderCoaches);
+  renderCoaches();
+
+  /* ---------- Sign-up cart ---------- */
+  var CART = { kids: [], items: [], parent: { name: '', phone: '', email: '' }, step: 'cart', summary: '' };
+  try { var sv = JSON.parse(ls('lod-cart') || 'null'); if (sv && sv.items) { CART.kids = sv.kids || []; CART.items = sv.items || []; CART.parent = sv.parent || CART.parent; } } catch (e) {}
+  function saveCart(){ ls('lod-cart', JSON.stringify({ kids: CART.kids, items: CART.items, parent: CART.parent })); $('#cartCount').textContent = CART.items.length; }
+  function cartTotal(){ return CART.items.reduce(function(t, it){ return t + FEES[it.s]; }, 0); }
+  function itemLabel(it){ return SPORTS[it.s].label + ', ages ' + it.a; }
+  var toastTimer = null;
+  function toast(msg, label, fn){
+    var old = $('.toast'); if (old) old.remove();
+    var t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status');
+    var sp = document.createElement('span'); sp.textContent = msg; t.appendChild(sp);
+    if (label) { var b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.addEventListener('click', function(){ t.remove(); fn(); }); t.appendChild(b); }
+    document.body.appendChild(t); clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.remove(); }, 6000);
+  }
+  function addToCart(key){
+    var p = key.split('|'), s = p[0], a = p[1];
+    if (CART.items.some(function(it){ return it.s === s && it.a === a; })) { toast(itemLabel({ s: s, a: a }) + ' is already in your cart.', 'View cart', openCart); return; }
+    CART.items.push({ id: rid('c'), s: s, a: a, kid: CART.kids.length === 1 ? CART.kids[0] : '' });
+    saveCart(); toast('Added ' + itemLabel({ s: s, a: a }) + '. Keep browsing or open your cart.', 'View cart', openCart);
+  }
+  $('#teamGrid').addEventListener('click', function(e){ var b = e.target.closest('[data-add]'); if (b) addToCart(b.getAttribute('data-add')); });
+
+  var cartOpen = false, lastFocus = null;
+  function openCart(){ lastFocus = document.activeElement; cartOpen = true; if (CART.step === 'done') CART.step = 'cart'; renderCart(); document.body.style.overflow = 'hidden'; var x = $('#cartRoot .xbtn'); if (x) x.focus(); }
+  function closeCart(){ cartOpen = false; $('#cartRoot').innerHTML = ''; document.body.style.overflow = ''; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  $('#cartBtn').addEventListener('click', openCart);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && cartOpen) closeCart(); });
+
+  function renderCart(){
+    if (!cartOpen) return;
+    var n = CART.items.length, h = '<div class="scrim" data-act="close"></div><div class="drawer" role="dialog" aria-modal="true" aria-label="Sign-up cart">';
+    var title = CART.step === 'cart' ? 'Sign-up cart (' + n + ')' : CART.step === 'checkout' ? 'Check out' : 'Almost done';
+    h += '<div class="dhead"><h3>' + title + '</h3><button class="xbtn" type="button" data-act="close" aria-label="Close cart">&times;</button></div>';
+    if (CART.step === 'cart') {
+      h += '<div class="dbody"><div><h4>Players</h4><div class="chips">' + CART.kids.map(function(k, i){ return '<span class="chip">' + esc(k) + '<button type="button" data-act="rmkid" data-i="' + i + '" aria-label="Remove ' + esc(k) + '">&times;</button></span>'; }).join('') + '</div><form data-form="kid" class="sendrow"><input id="kidName" maxlength="40" placeholder="Child’s name" aria-label="Child’s name" autocomplete="off"><button class="btn green sm" type="submit">Add player</button></form><div class="msg">Signing up one child for several sports? Add them once, then choose them on each team.</div></div>';
+      if (!n) h += '<div class="empty">Your cart is empty. Browse the teams and tap Add to sign-up.</div>';
+      CART.items.forEach(function(it){
+        h += '<div class="line"><div class="top"><div><b>' + esc(SPORTS[it.s].label) + '</b><br><span style="color:var(--muted);font-size:14px">Ages ' + esc(it.a) + ' &middot; ' + esc(TIMES[it.a]) + '</span></div><span class="fee">$' + FEES[it.s] + '</span></div><label>Player<select data-sel="' + esc(it.id) + '"><option value="">Choose player</option>' + CART.kids.map(function(k){ return '<option' + (k === it.kid ? ' selected' : '') + '>' + esc(k) + '</option>'; }).join('') + '</select></label><button class="rm" type="button" data-act="rmitem" data-id="' + esc(it.id) + '" style="margin-left:0;justify-self:start">Remove</button></div>';
+      });
+      if (n) h += '<div class="note-line" style="margin:0"><span class="ph">Placeholder</span> Fees are examples until the program confirms them.</div>';
+      h += '</div><div class="dfoot"><div class="tot"><span>Subtotal</span><span>$' + cartTotal() + '</span></div><div class="msg" id="cartMsg" style="margin:0"></div><button class="btn solid" type="button" data-act="checkout"' + (n ? '' : ' disabled') + '>Check out</button><button class="btn line-b" type="button" data-act="close">Continue browsing</button></div>';
+    } else if (CART.step === 'checkout') {
+      h += '<div class="dbody"><div><h4>Parent or guardian</h4><div style="display:grid;gap:10px"><label>Name<input id="pName" value="' + esc(CART.parent.name) + '" autocomplete="name"></label><label>Phone<input id="pPhone" type="tel" value="' + esc(CART.parent.phone) + '" autocomplete="tel"></label><label>Email<input id="pEmail" type="email" value="' + esc(CART.parent.email) + '" autocomplete="email"></label></div></div><div><h4>Summary</h4>';
+      CART.kids.forEach(function(k){
+        var its = CART.items.filter(function(it){ return it.kid === k; }); if (!its.length) return;
+        h += '<div class="line" style="margin-bottom:10px"><b>' + esc(k) + '</b>' + its.map(function(it){ return '<div class="top"><span>' + esc(itemLabel(it)) + '</span><span>$' + FEES[it.s] + '</span></div>'; }).join('') + '</div>';
+      });
+      h += '</div></div><div class="dfoot"><div class="tot"><span>Total</span><span>$' + cartTotal() + '</span></div><div class="msg" id="cartMsg" style="margin:0"></div><button class="btn solid" type="button" data-act="finish">Finish sign-up</button><button class="btn line-b" type="button" data-act="back">Back to cart</button></div>';
+    } else {
+      h += '<div class="dbody"><div class="banner" style="margin:0">Your sign-up is ready. Nothing has been sent yet. Copy the summary below and send it to the program director so we can confirm your spots.</div><div class="sumbox" id="sumBox">' + esc(CART.summary) + '</div><div class="kv"><div><span class="role">Director email</span><span class="val" style="font-size:15px">director@legendofdoom.example</span></div><div><span class="role">Director phone</span><span class="val">(555) 010-0142</span></div></div><div class="note-line" style="margin:0"><span class="ph">Placeholder</span> Replace with the real contact.</div></div><div class="dfoot"><button class="btn solid" type="button" data-act="copysum">Copy summary</button><button class="btn line-b" type="button" data-act="clear">Done, clear my cart</button></div>';
+    }
+    $('#cartRoot').innerHTML = h + '</div>';
+  }
+  function cmsgC(t){ var m = $('#cartMsg'); if (m) { m.textContent = t; m.className = 'msg err'; } }
+  function addKid(name){
+    name = name.trim(); if (!name) return;
+    if (CART.kids.some(function(k){ return k.toLowerCase() === name.toLowerCase(); })) return;
+    CART.kids.push(name);
+    if (CART.kids.length === 1) CART.items.forEach(function(it){ if (!it.kid) it.kid = name; });
+    saveCart(); renderCart();
+  }
+  function buildSummary(){
+    var L = ['Legend of Doom sign-up', 'Parent: ' + CART.parent.name, 'Phone: ' + CART.parent.phone, 'Email: ' + CART.parent.email, ''];
+    CART.kids.forEach(function(k){
+      var its = CART.items.filter(function(it){ return it.kid === k; }); if (!its.length) return;
+      L.push('Player: ' + k); its.forEach(function(it){ L.push('  - ' + itemLabel(it) + ' ($' + FEES[it.s] + ')'); });
+    });
+    L.push('', 'Estimated total: $' + cartTotal() + ' (fees are placeholders)'); return L.join('\n');
+  }
+  $('#cartRoot').addEventListener('click', function(e){
+    var b = e.target.closest('[data-act]'); if (!b) return; var act = b.getAttribute('data-act');
+    if (act === 'close') closeCart();
+    else if (act === 'rmkid') { var k = CART.kids.splice(+b.getAttribute('data-i'), 1)[0]; CART.items.forEach(function(it){ if (it.kid === k) it.kid = ''; }); saveCart(); renderCart(); }
+    else if (act === 'rmitem') { var id = b.getAttribute('data-id'); CART.items = CART.items.filter(function(it){ return it.id !== id; }); saveCart(); renderCart(); }
+    else if (act === 'checkout') {
+      if (!CART.items.length) return;
+      if (CART.items.some(function(it){ return !it.kid; })) { cmsgC('Choose a player for every team in your cart.'); return; }
+      CART.step = 'checkout'; renderCart();
+    }
+    else if (act === 'back') { CART.step = 'cart'; renderCart(); }
+    else if (act === 'finish') {
+      CART.parent = { name: $('#pName').value.trim(), phone: $('#pPhone').value.trim(), email: $('#pEmail').value.trim() }; saveCart();
+      if (!CART.parent.name || !CART.parent.phone || !CART.parent.email) { cmsgC('Enter your name, phone and email.'); return; }
+      CART.summary = buildSummary(); CART.step = 'done'; renderCart();
+    }
+    else if (act === 'copysum') {
+      function ok(){ b.textContent = 'Copied'; setTimeout(function(){ b.textContent = 'Copy summary'; }, 1500); }
+      function sel(){ var r = document.createRange(); r.selectNodeContents($('#sumBox')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selected. Copy it now'; }
+      try { navigator.clipboard.writeText(CART.summary).then(ok, sel); } catch (err) { sel(); }
+    }
+    else if (act === 'clear') { CART.items = []; CART.step = 'cart'; saveCart(); closeCart(); }
+  });
+  $('#cartRoot').addEventListener('submit', function(e){ e.preventDefault(); if (e.target.getAttribute('data-form') === 'kid') addKid($('#kidName').value); });
+  $('#cartRoot').addEventListener('change', function(e){
+    var id = e.target.getAttribute && e.target.getAttribute('data-sel'); if (!id) return;
+    CART.items.forEach(function(it){ if (it.id === id) it.kid = e.target.value; }); saveCart();
+  });
+  saveCart();
+
+  /* ---------- Copy buttons ---------- */
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('.copy'); if (!b) return;
+    var span = b.previousElementSibling, txt = span.getAttribute('data-copy') || span.textContent;
+    function done(){ b.textContent = 'Copied'; setTimeout(function(){ b.textContent = 'Copy'; }, 1400); }
+    function fallback(){ var r = document.createRange(); r.selectNodeContents(span); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selected'; setTimeout(function(){ b.textContent = 'Copy'; }, 1400); }
+    try { navigator.clipboard.writeText(txt).then(done, fallback); } catch(err){ fallback(); }
+  });
+
+  /* ---------- Player card rendering ---------- */
+  function totals(p){
+    var S = SPORTS[p.sport], t = {};
+    S.stats.forEach(function(s){ t[s[0]] = 0; });
+    (p.games || []).forEach(function(g){ S.stats.forEach(function(s){ t[s[0]] += (+((g.v || {})[s[0]])) || 0; }); });
+    return t;
+  }
+  function bars(p, key, label){
+    var gs = (p.games || []).slice(-8); if (!gs.length) return '';
+    var vals = gs.map(function(g){ return (+((g.v || {})[key])) || 0; });
+    var max = Math.max.apply(null, vals.concat([1])), W = 320, bw = W / gs.length, svg = '';
+    vals.forEach(function(v, i){
+      var hgt = Math.round(v / max * 80), x = i * bw + 5, y = 104 - hgt;
+      svg += '<rect class="bar-r" x="' + x + '" y="' + y + '" width="' + (bw - 10) + '" height="' + hgt + '"/><text x="' + (x + (bw - 10) / 2) + '" y="' + (y - 4) + '" text-anchor="middle">' + v + '</text><text class="dl" x="' + (x + (bw - 10) / 2) + '" y="118" text-anchor="middle">' + esc((gs[i].date || '').slice(5)) + '</text>';
+    });
+    return '<h4>' + esc(label) + ' by game</h4><svg class="chart" viewBox="0 0 ' + W + ' 124" role="img" aria-label="' + esc(label) + ' per game"><line class="ax" x1="0" y1="104" x2="' + W + '" y2="104"/>' + svg + '</svg>';
+  }
+  function playerCard(p, coach){
+    var S = SPORTS[p.sport], t = totals(p), n = (p.games || []).length, h = '';
+    h += '<div class="phead"><div class="jersey">' + esc(p.jersey || '#') + '</div><div><h3>' + esc(p.name) + '</h3><p>' + esc(S.label) + ' &middot; Ages ' + esc(p.age) + '</p></div></div>';
+    h += '<div class="stats"><div class="stat"><span>Games</span><b>' + n + '</b></div>';
+    S.stats.forEach(function(s){ h += '<div class="stat"><span>' + s[1] + '</span><b>' + t[s[0]] + '</b><em>' + (n ? (t[s[0]] / n).toFixed(1) : '0.0') + ' per game</em></div>'; });
+    if (S.avg) h += '<div class="stat"><span>AVG</span><b>' + (t.ab ? (t.h / t.ab).toFixed(3).replace(/^0/, '') : '.000') + '</b><em>hits / at bats</em></div>';
+    h += '</div>';
+    h += '<div class="cols"><div>';
+    h += bars(p, S.stats[0][0], S.stats[0][1]);
+    h += '<h4>Game log</h4>';
+    if (n) {
+      h += '<div class="scroll"><table><thead><tr><th>Date</th><th>Opp</th>' + S.stats.map(function(s){ return '<th>' + s[1] + '</th>'; }).join('') + (coach ? '<th></th>' : '') + '</tr></thead><tbody>';
+      (p.games || []).slice().reverse().forEach(function(g){
+        h += '<tr><td>' + esc(g.date) + '</td><td>' + esc(g.opp) + '</td>' + S.stats.map(function(s){ return '<td>' + (((g.v || {})[s[0]]) || 0) + '</td>'; }).join('') + (coach ? '<td><button class="rm" type="button" data-act="rmgame" data-id="' + esc(g.id) + '">Remove</button></td>' : '') + '</tr>';
+      });
+      h += '</tbody></table></div>';
+    } else h += '<div class="empty">No games recorded yet.</div>';
+    if (coach) {
+      h += '<h4 style="margin-top:20px">Add game stats</h4><form data-form="game"><div class="frow"><label>Date<input name="date" type="date" required value="' + new Date().toISOString().slice(0, 10) + '"></label><label>Opponent<input name="opp" required maxlength="40"></label></div><div class="frow">' + S.stats.map(function(s){ return '<label>' + s[1] + '<input name="' + s[0] + '" type="number" min="0" step="1" value="0"></label>'; }).join('') + '</div><button class="btn green sm" type="submit">Save game</button></form>';
+    }
+    h += '</div><div><h4>Coach notes &amp; drills for home</h4>';
+    var notes = (p.notes || []).slice().reverse();
+    if (notes.length) notes.forEach(function(nt){
+      h += '<div class="note"><div class="meta"><span class="area">' + esc(nt.area) + '</span><span>' + esc(fmtDate(nt.ts)) + '</span>' + (coach ? '<button class="rm" type="button" data-act="rmnote" data-id="' + esc(nt.id) + '">Remove</button>' : '') + '</div><p>' + esc(nt.text) + '</p>';
+      if ((nt.drills || []).length) {
+        h += '<ul>';
+        nt.drills.forEach(function(d, i){
+          var key = 'lod-d-' + p.id + '-' + nt.id + '-' + i, on = ls(key) === '1';
+          h += '<li><label class="chk"><input type="checkbox" data-drill="' + esc(key) + '"' + (on ? ' checked' : '') + '><span>' + esc(d) + '</span></label></li>';
+        });
+        h += '</ul>';
+      }
+      h += '</div>';
+    }); else h += '<div class="empty">No notes from the coach yet.</div>';
+    if (coach) {
+      var areas = Object.keys(DRILLS[p.sport]);
+      h += '<h4 style="margin-top:20px">Add a note</h4><form data-form="note"><div class="frow"><label>Needs improvement in<select name="area" id="areaSel">' + areas.map(function(a){ return '<option>' + esc(a) + '</option>'; }).join('') + '</select></label></div><label style="margin-bottom:12px">Note for the parent<textarea name="text" required maxlength="800"></textarea></label><div id="drillBox" style="margin-bottom:12px"></div><label style="margin-bottom:12px">Extra drill (optional)<input name="custom" maxlength="160"></label><button class="btn green sm" type="submit">Save note</button></form>';
+    }
+    h += '</div></div>';
+    return h;
+  }
+  function drillBoxHTML(sport, area){
+    return '<h4>Recommended drills</h4>' + (DRILLS[sport][area] || []).map(function(d, i){ return '<label class="chk"><input type="checkbox" name="drill" value="' + esc(d) + '" checked><span>' + esc(d) + '</span></label>'; }).join('');
+  }
+  document.addEventListener('change', function(e){
+    if (e.target.matches && e.target.matches('input[data-drill]')) ls(e.target.getAttribute('data-drill'), e.target.checked ? '1' : '0');
+  });
+
+  /* ---------- State + capabilities ---------- */
+  var db = null, user = null, uid = null, isCoach = false, canWrite = false;
+  var myPlayers = [], myLink = null, selMine = null;
+  var allPlayers = [], allLinks = [], selCoach = null;
+  var portalReady = false, coachReady = false;
+
+  function renderPortal(){
+    var box = $('#portalBody'), h = '';
+    if (!db || !uid) {
+      h = '<div class="banner">Sample view. Sign in with your Claude account to see your own child’s stats.</div>' + playerCard(SAMPLE, false);
+    } else if (!portalReady) {
+      h = '<div class="empty">Loading your players...</div>';
+    } else if (!myPlayers.length) {
+      h = '<div class="banner">Sample player shown. You have no linked children yet. Use the form below to ask the coach to link your child.</div>' + playerCard(SAMPLE, false);
+    } else {
+      if (!selMine || !myPlayers.some(function(p){ return p.id === selMine; })) selMine = myPlayers[0].id;
+      h = '<div class="ptabs">' + myPlayers.map(function(p){ return '<button type="button" data-pid="' + esc(p.id) + '" aria-pressed="' + (p.id === selMine) + '">' + esc(p.name) + '</button>'; }).join('') + '</div>';
+      h += playerCard(myPlayers.filter(function(p){ return p.id === selMine; })[0], false);
+    }
+    box.innerHTML = h;
+    var ln = $('#lfList'), kids = (myLink && myLink.children) || [];
+    ln.innerHTML = kids.length ? '<h4 style="margin-top:18px">Your requests</h4>' + kids.map(function(c){ return '<p>' + esc(c.name) + ', ' + esc(SPORTS[c.sport] ? SPORTS[c.sport].label : c.sport) + ' ' + esc(c.age) + ' &middot; ' + (c.playerId ? 'On the roster' : 'Waiting for the coach') + '</p>'; }).join('') : '';
+  }
+  $('#portalBody').addEventListener('click', function(e){
+    var b = e.target.closest('[data-pid]'); if (!b) return; selMine = b.getAttribute('data-pid'); renderPortal();
+  });
+
+  $('#linkForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    var msg = $('#lfMsg'); msg.className = 'msg';
+    if (!db || !uid || !canWrite) { msg.textContent = 'You need Contributor access to send a request. Ask the coach.'; msg.className = 'msg err'; return; }
+    var kids = ((myLink && myLink.children) || []).slice();
+    kids.push({ name: $('#lfName').value.trim(), sport: $('#lfSport').value, age: $('#lfAge').value });
+    try { await db.doc('links/' + uid).set({ children: kids, ts: Date.now() }); $('#lfName').value = ''; msg.textContent = 'Sent. The coach will add your child to the roster.'; }
+    catch (err) { msg.textContent = 'Could not send the request. Try again in a moment.'; msg.className = 'msg err'; }
+  });
+
+  /* ---------- Coach console ---------- */
+  var coachToken = 0;
+  async function renderCoach(){
+    var tok = ++coachToken, box = $('#coachBody'), h = '';
+    var pend = [];
+    allLinks.forEach(function(l){ ((l.data.children) || []).forEach(function(c, i){ if (!c.playerId) pend.push({ uid: l.id, i: i, c: c }); }); });
+    var ids = allLinks.map(function(l){ return l.id; }), prof = {};
+    if (user && ids.length) { try { prof = await user.profiles(ids); } catch(e){} }
+    if (tok !== coachToken) return;
+    function pname(id){ return (prof[id] && prof[id].name) || 'A parent'; }
+    h += '<h4>Parent requests</h4>';
+    if (pend.length) {
+      pend.forEach(function(r){
+        h += '<form class="frow" data-form="roster" data-uid="' + esc(r.uid) + '" data-i="' + r.i + '" style="align-items:end"><div><b>' + esc(r.c.name) + '</b><br><span style="color:var(--muted);font-size:14px">' + esc(SPORTS[r.c.sport] ? SPORTS[r.c.sport].label : r.c.sport) + ' ' + esc(r.c.age) + ' &middot; from ' + esc(pname(r.uid)) + '</span></div><label>Jersey #<input name="jersey" maxlength="3" style="max-width:90px"></label><div><button class="btn green sm" type="submit">Add to roster</button></div></form>';
+      });
+    } else h += '<div class="empty">No pending requests. When a parent sends a request from the Player Stats section it appears here.</div>';
+    h += '<h4 style="margin-top:24px">Roster</h4>';
+    if (allPlayers.length) {
+      if (!selCoach || !allPlayers.some(function(p){ return p.id === selCoach; })) selCoach = allPlayers[0].id;
+      h += '<div class="ptabs">' + allPlayers.map(function(p){ return '<button type="button" data-cpid="' + esc(p.id) + '" aria-pressed="' + (p.id === selCoach) + '">' + esc(p.name) + ' (' + esc(SPORTS[p.sport].label) + ' ' + esc(p.age) + ')</button>'; }).join('') + '</div><div id="cCard">' + playerCard(allPlayers.filter(function(p){ return p.id === selCoach; })[0], true) + '</div>';
+    } else h += '<div class="empty">No players yet. Add one from a parent request above.</div>';
+    h += '<div class="msg" id="coachMsg"></div>';
+    box.innerHTML = h;
+    var sel = $('#areaSel'); if (sel) { var cp = curCoach(); $('#drillBox').innerHTML = drillBoxHTML(cp.sport, sel.value); }
+  }
+  function curCoach(){ return allPlayers.filter(function(p){ return p.id === selCoach; })[0]; }
+  function cmsg(t, err){ var m = $('#coachMsg'); if (m) { m.textContent = t; m.className = 'msg' + (err ? ' err' : ''); } }
+  async function savePlayer(p){
+    var data = JSON.parse(JSON.stringify(p));
+    await db.doc('players/' + p.id).set(data);
+    if (p.parentUid) await db.doc('family/' + p.parentUid + '/players/' + p.id).set(data);
+  }
+  var cb = $('#coachBody');
+  cb.addEventListener('click', async function(e){
+    var t = e.target.closest('[data-cpid]');
+    if (t) { selCoach = t.getAttribute('data-cpid'); renderCoach(); return; }
+    var r = e.target.closest('[data-act]'); if (!r) return;
+    var p = curCoach(); if (!p) return;
+    var q = JSON.parse(JSON.stringify(p)), id = r.getAttribute('data-id');
+    if (r.getAttribute('data-act') === 'rmgame') q.games = (q.games || []).filter(function(g){ return g.id !== id; });
+    if (r.getAttribute('data-act') === 'rmnote') q.notes = (q.notes || []).filter(function(n){ return n.id !== id; });
+    try { await savePlayer(q); cmsg('Removed.'); } catch(err){ cmsg('Could not save. Try again.', true); }
+  });
+  cb.addEventListener('change', function(e){
+    if (e.target.id === 'areaSel') { var p = curCoach(); $('#drillBox').innerHTML = drillBoxHTML(p.sport, e.target.value); }
+  });
+  cb.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var f = e.target, kind = f.getAttribute('data-form'), fd = new FormData(f), btn = f.querySelector('button[type=submit]');
+    if (btn) btn.disabled = true;
+    try {
+      if (kind === 'roster') {
+        var luid = f.getAttribute('data-uid'), i = +f.getAttribute('data-i');
+        var lk = allLinks.filter(function(l){ return l.id === luid; })[0], kids = JSON.parse(JSON.stringify(lk.data.children)), c = kids[i];
+        var pid = rid('p');
+        await savePlayer({ id: pid, name: c.name, sport: c.sport, age: c.age, jersey: (fd.get('jersey') || '').toString().trim(), parentUid: luid, games: [], notes: [] });
+        kids[i].playerId = pid;
+        await db.doc('links/' + luid).update({ children: kids });
+        selCoach = pid;
+      } else {
+        var p = curCoach(), q = JSON.parse(JSON.stringify(p));
+        if (kind === 'game') {
+          var v = {}; SPORTS[p.sport].stats.forEach(function(s){ v[s[0]] = Math.max(0, +fd.get(s[0]) || 0); });
+          q.games = (q.games || []).concat([{ id: rid('g'), date: fd.get('date'), opp: (fd.get('opp') || '').toString().trim(), v: v }]).sort(function(a, b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+        } else if (kind === 'note') {
+          var drills = fd.getAll('drill'); var cu = (fd.get('custom') || '').toString().trim(); if (cu) drills.push(cu);
+          q.notes = (q.notes || []).concat([{ id: rid('n'), ts: Date.now(), area: fd.get('area'), text: (fd.get('text') || '').toString().trim(), drills: drills }]);
+        }
+        await savePlayer(q);
+      }
+      cmsg('Saved.');
+    } catch (err) { cmsg('Could not save. Check your Editor access and try again.', true); if (btn) btn.disabled = false; }
+  });
+
+  /* ---------- Chat ---------- */
+  var chUnsub = null, chatDocs = [], chatTok = 0, chatTimer = null;
+  function chanId(){ return $('#chSport').value + '-' + $('#chAge').value; }
+  function subChat(){
+    if (!db) return;
+    if (chUnsub) { chUnsub(); chUnsub = null; }
+    chatDocs = []; var loaded = false;
+    $('#chatBox').innerHTML = '<div class="empty">Loading messages...</div>';
+    clearTimeout(chatTimer);
+    chatTimer = setTimeout(function(){ if (!loaded) $('#chatBox').innerHTML = '<div class="empty">Cannot reach the chat yet. It will load when the connection is back.</div>'; }, 10000);
+    chUnsub = db.collection('chat').where('ch', '==', chanId()).orderBy('ts', 'desc').limit(100).onSnapshot(function(s){
+      loaded = true; clearTimeout(chatTimer);
+      chatDocs = s.docs.map(function(d){ return d.data(); }).reverse(); renderChat();
+    }, function(){ loaded = true; clearTimeout(chatTimer); $('#chatBox').innerHTML = '<div class="empty">You do not have access to this chat.</div>'; });
+  }
+  async function renderChat(){
+    var tok = ++chatTok, box = $('#chatBox');
+    if (!chatDocs.length) { box.innerHTML = '<div class="empty">No messages yet. Say hello to the team.</div>'; return; }
+    var ids = []; chatDocs.forEach(function(m){ if (m.uid && ids.indexOf(m.uid) < 0) ids.push(m.uid); });
+    var prof = {}; try { prof = await user.profiles(ids); } catch(e){}
+    if (tok !== chatTok) return;
+    box.innerHTML = chatDocs.map(function(m){
+      var nm = (prof[m.uid] && prof[m.uid].name) || 'Someone';
+      return '<div class="m' + (m.uid === uid ? ' me' : '') + '"><span class="by">' + esc(m.uid === uid ? 'You' : nm) + '</span><span class="t">' + esc(fmtDate(m.ts)) + ' ' + esc(new Date(m.ts).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })) + '</span><br>' + esc(m.text) + '</div>';
+    }).join('');
+    box.scrollTop = box.scrollHeight;
+  }
+  $('#chSport').addEventListener('change', subChat);
+  $('#chAge').addEventListener('change', subChat);
+  $('#chatForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    var inp = $('#chatText'), txt = inp.value.trim(); if (!txt || !db || !uid) return;
+    var m = $('#chatMsg'); m.textContent = ''; m.className = 'msg'; inp.value = '';
+    try { await db.collection('chat').add({ ch: chanId(), uid: uid, text: txt, ts: Date.now() }); }
+    catch (err) { m.textContent = 'Message not sent. Try again.'; m.className = 'msg err'; inp.value = txt; }
+  });
+
+  /* ---------- Boot ---------- */
+  if (!(window.claude && claude.use)) {
+    document.querySelectorAll('[data-rt]').forEach(function(n){ n.hidden = true; });
+    $('#soon').hidden = false;
+  }
+  renderPortal();
+  (async function(){
+    try {
+      if (!window.claude || !claude.use) throw 0;
+      user = await claude.use('user'); db = await claude.use('db');
+      if (user) { uid = await user.id(); isCoach = await user.canEdit(); canWrite = (await user.can('data.write')) !== false; }
+    } catch (e) {}
+    if (!db || !uid) {
+      renderPortal();
+      $('#chatBox').innerHTML = '<div class="empty">Sign in with your Claude account to read and send team messages.</div>';
+      return;
+    }
+    $('#linkPanel').hidden = false;
+    $('#chatSend').disabled = !canWrite;
+    if (!canWrite) $('#chatMsg').textContent = 'You can read the chat. Ask the coach for Contributor access to post.';
+    db.collection('family/' + uid + '/players').onSnapshot(function(s){
+      myPlayers = s.docs.map(function(d){ var x = d.data(); x.id = d.id; return x; }); portalReady = true; renderPortal();
+    }, function(){ portalReady = true; renderPortal(); });
+    db.doc('links/' + uid).onSnapshot(function(s){ myLink = s.exists ? s.data() : null; renderPortal(); }, function(){});
+    if (isCoach) {
+      $('#coach').hidden = false; $('#coachNav').hidden = false;
+      db.collection('players').onSnapshot(function(s){
+        allPlayers = s.docs.map(function(d){ var x = d.data(); x.id = d.id; return x; }).filter(function(p){ return SPORTS[p.sport]; }); renderCoach();
+      }, function(){});
+      db.collection('links').onSnapshot(function(s){
+        allLinks = s.docs.map(function(d){ return { id: d.id, data: d.data() }; }); renderCoach();
+      }, function(){});
+    }
+    subChat();
+  })();
+})();
+</script>
+</body></html>
